@@ -1,0 +1,174 @@
+---
+title: "Installation & Quick Start Guide"
+---
+
+
+This guide walks you through installing **Zen Reporter**, integrating it with your Playwright test configuration, running your test suite, and viewing the generated interactive reports.
+
+---
+
+## 📥 Prerequisites
+
+- **Node.js**: Version `18.0.0` or higher
+- **Playwright**: `@playwright/test` version `>=1.63.0` (may work with slightly older Playwright versions, but upgrading your Playwright version is recommended)
+- **Optional peer dependency**: `@duckdb/node-api` (version `1.5.5-r.5`) for local CLI historical intelligence commands.
+
+---
+
+## 🛠️ Step 1: Installation
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Install `zen-reporter` using your preferred Node package manager:
+
+<Tabs>
+  <TabItem label="npm" icon="open-book">
+    ```bash
+    npm install --save-dev @arpanp/zen-reporter
+    ```
+  </TabItem>
+  <TabItem label="pnpm" icon="rocket">
+    ```bash
+    pnpm add -D @arpanp/zen-reporter
+    ```
+  </TabItem>
+  <TabItem label="yarn" icon="laptop">
+    ```bash
+    yarn add -D @arpanp/zen-reporter
+    ```
+  </TabItem>
+  <TabItem label="bun" icon="setting">
+    ```bash
+    bun add -d @arpanp/zen-reporter
+    ```
+  </TabItem>
+</Tabs>
+
+### (Optional) Install DuckDB Peer Dependency for History Intelligence
+
+If you plan to use historical trend analysis, test regression tracking, or DuckDB CLI queries (`npx zr history`), install `@duckdb/node-api`:
+
+<Tabs>
+  <TabItem label="npm">
+    ```bash
+    npm install --save-dev @duckdb/node-api
+    ```
+  </TabItem>
+  <TabItem label="pnpm">
+    ```bash
+    pnpm add -D @duckdb/node-api
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```bash
+    yarn add -D @duckdb/node-api
+    ```
+  </TabItem>
+  <TabItem label="bun">
+    ```bash
+    bun add -d @duckdb/node-api
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+## ⚙️ Step 2: Configure Playwright
+
+Add `zen-reporter` to your Playwright configuration file (`playwright.config.ts` or `playwright.config.js`).
+
+### Basic Setup (Default Options)
+
+```typescript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  reporter: 'zen-reporter',
+});
+```
+
+### Recommended Production Setup
+
+Use Playwright's tuple array syntax to supply reporter options:
+
+```typescript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  reporter: [
+    [
+      'zen-reporter',
+      {
+        outputDir: 'zen-report',
+        projectName: 'E2E Web Suite',
+        testRunName: 'Build #{N}',
+        theme: 'Cafe',
+        darkMode: false,
+        singleSummaryFile: true,
+        enableHistory: 'auto',
+        consoleProgress: 'auto',
+      },
+    ],
+  ],
+});
+```
+
+---
+
+## 🚀 Step 3: Run Your Tests
+
+Run your Playwright tests using your preferred package manager:
+
+<Tabs>
+  <TabItem label="npm">
+    ```bash
+    npx playwright test
+    ```
+  </TabItem>
+  <TabItem label="pnpm">
+    ```bash
+    pnpm exec playwright test
+    ```
+  </TabItem>
+  <TabItem label="yarn">
+    ```bash
+    yarn playwright test
+    ```
+  </TabItem>
+  <TabItem label="bun">
+    ```bash
+    bunx playwright test
+    ```
+  </TabItem>
+</Tabs>
+
+During execution, `zen-reporter` output depends on your terminal interactive state:
+
+- **Interactive TTY Terminals**: Displays a live dynamic single-line progress bar showing active workers, completed tests, pass/fail counts, and current test title.
+- **Non-TTY / CI Environments**: Outputs clean dot progress (`.` for pass, `F` for fail, `s` for skip, `±` for flaky).
+- **Completion Summary**: Prints an ANSI-formatted terminal summary table upon execution completion.
+
+---
+
+## 🌐 Step 4: Open & View the Report
+
+Once test execution completes, the HTML report will be generated at `<outputDir>/index.html` (default: `zen-report/index.html`).
+
+### Method 1: Using the Built-in `zr` CLI Tool
+
+Zen Reporter provides a built-in CLI command `zr` (or `zen-reporter`) to launch a local server and open the report in your default browser:
+
+```bash
+npx zr show
+```
+
+### Method 2: Opening Directly in Browser
+
+Because `index.html` is completely standalone with zero external network requests, you can double-click or open `zen-report/index.html` directly in any web browser or view it served over any static file host.
+
+---
+
+## 🔄 Next Steps
+
+- Explore all available options in the [Configuration Guide](/configuration/).
+- Learn about interactive features in the [Features Guide Overview](/features/dashboard-overview/).

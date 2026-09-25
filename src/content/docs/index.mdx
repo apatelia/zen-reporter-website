@@ -1,40 +1,45 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Beautiful Reports for Playwright
+description: Transform raw Playwright test logs into an interactive, visually stunning single-file HTML dashboard.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  title: Beautiful Reports for Playwright
+  tagline: Transform raw Playwright logs into interactive, single-file HTML dashboards for modern QA teams.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/hero-slides-preview.jpg
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Getting Started
+      link: /installation/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: View on GitHub
+      link: https://github.com/apatelia/zen-reporter
       icon: external
-      variant: minimal
+      variant: secondary
+      attrs:
+        target: _blank
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Key Features
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Executive Dashboards" icon="bars">
+    Radial pass rate indicators, execution efficiency calculations, test health breakdowns, and environment metadata.
+  </Card>
+  <Card title="Deep-Dive Failure Analysis" icon="error">
+    Intelligent error grouping, step-by-step trace markers, highlighted code frames, and structured diff stack traces.
+  </Card>
+  <Card title="Visual Regression Viewer" icon="magnifier">
+    Side-by-side snapshot comparison, interactive split-screen image slider, and overlay diff highlight modes.
+  </Card>
+  <Card title="Test Intelligence" icon="rocket">
+    Embedded analytical engine for flaky test detection, regression tracking, and custom SQL history querying.
+  </Card>
+  <Card title="Highly Adaptable & Configurable" icon="setting">
+    Featureful by default, minimal on demand, configurable always.
+  </Card>
+  <Card title="Beautiful by Design" icon="sun">
+    Built-in themes with real-time light and dark mode toggling.
+  </Card>
 </CardGrid>
