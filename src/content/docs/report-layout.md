@@ -40,8 +40,8 @@ The header uses a fixed flexbox layout (`shrink-0`) while the main report conten
 
 #### 1. Project & Test Run Branding
 
-- **Project Name Title**: Large bold heading presenting the top-level test project name ([`projectName`](/configuration#2-projectname-string)). Defaults to `"Test Execution Report"` if not configured.
-- **Run Identifier Badge**: Styled pill badge displaying the custom test run name ([`testRunName`](/configuration#3-testrunname-string)), such as CI build numbers (`"Build #42"`), commit hashes, or release tags.
+- **Project Name Title**: Large bold heading presenting the top-level test project name ([`projectName`](../configuration#2-projectname-string)). Defaults to `"Test Execution Report"` if not configured.
+- **Run Identifier Badge**: Styled pill badge displaying the custom test run name ([`testRunName`](../configuration#3-testrunname-string)), such as CI build numbers (`"Build #42"`), commit hashes, or release tags.
 - **Zen Reporter Badge**: Integrated Zen Reporter logo mark and brand attribution.
 
 #### 2. Execution Time & Duration Summary
