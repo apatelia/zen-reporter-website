@@ -2,29 +2,33 @@
 title: "High-Level Dashboard & Key Metrics"
 ---
 
-
 The **High-Level Dashboard** (accessible via the **Overview** tab) serves as the executive summary and health control center for your test suite execution. It transforms thousands of raw assertion points into clear, actionable KPI indicators.
+
+![Dashboard](../../../assets/screenshots/overview.png)
 
 ---
 
 ## 📊 Overview Tab Components
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Dashboard Overview                              │
-├────────────────────────────────────────────────────────────────────────┤
-│                       Run Metadata Info Cards                          │
-│  Project Name, Run Name, Start/End Time, Total Projects, Worker Threads│
-├────────────────────────────────────────────────────────────────────────┤
-│                           Quick KPI Stats                              │
-│              (Total, Pass, Fail, Skipped, Interrupted)                 │
-├───────────────────┬────────────────────────────┬───────────────────────┤
-│  Pass Rate Ring   │  Execution Efficiency Card │ Test Health Breakdown │
-│    (Radial %)     │    Wall-Clock Duration     │ (Passed, Failed,      │
-│                   │          vs.               │ TimedOut, Skipped     │
-│                   │  Cumulative Sequential     │ Interrupted bar)      │
-│                   │     Worker Duration        │                       │
-└───────────────────┴────────────────────────────┴───────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    Dashboard Overview                                    │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                 Run Metadata Info Cards                                  │
+│         Run Duration, Total Projects, Total Suites, Total Tests, Worker Threads          │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                     Quick KPI Stats                                      │
+│                        (Total, Pass, Fail, Skipped, Interrupted)                         │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                     Quick KPI Stats                                      │
+│ (Avg. Duration, Slowest Test Duration, Fastest Test Duration, Total Tags, Failure Rate)  │
+├──────────────────────┬───────────────────────────────┬───────────────────────────────────┤
+│    Pass Rate Ring    │   Execution Efficiency Card   │       Test Health Breakdown       │
+│      (Radial %)      │      Wall-Clock Duration      │    (Passed, Failed, TimedOut,     │
+│                      │              vs.              │     Skipped, Interrupted bar)     │
+│                      │     Cumulative Sequential     │                                   │
+│                      │        Worker Duration        │                                   │
+└──────────────────────┴───────────────────────────────┴───────────────────────────────────┘
 ```
 
 ---
@@ -37,7 +41,7 @@ Provides environment context for compliance and audit logs:
 
 - **Execution Duration**: Actual wall-clock duration taken for the latest test run.
 - **Projects/Browsers**: Total number of project/browser profiles configured for the project.
-- **Suits/Files**: Total number of spec files in the project.
+- **Suits/Files**: Total number of spec files or `describe` suites in the project.
 - **Test Cases**: Total number of test cases evaluated across all Playwright project configurations.
 - **Worker Thread Count**: Number of Playwright worker threads utilized during execution.
 

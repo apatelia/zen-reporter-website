@@ -44,21 +44,24 @@ export default defineConfig({
 `summary.html` includes only high-level dashboard cards without failure stack traces:
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Dashboard Overview                              │
-├────────────────────────────────────────────────────────────────────────┤
-│                       Run Metadata Info Card                           │
-│  Project Name, Run Name, Start/End Time, Total Projects, Worker Threads│
-├────────────────────────────────────────────────────────────────────────┤
-│                           Quick KPI Stats                              │
-│              (Total, Pass, Fail, Skipped, Interrupted)                 │
-├───────────────────┬────────────────────────────┬───────────────────────┤
-│  Pass Rate Ring   │  Execution Efficiency Card │ Test Health Breakdown │
-│    (Radial %)     │    Wall-Clock Duration     │ (Passed, Failed,      │
-│                   │          vs.               │ TimedOut, Skipped     │
-│                   │  Cumulative Sequential     │ Interrupted bar)      │
-│                   │     Worker Duration        │                       │
-└───────────────────┴────────────────────────────┴───────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    Dashboard Overview                                    │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                 Run Metadata Info Cards                                  │
+│         Run Duration, Total Projects, Total Suites, Total Tests, Worker Threads          │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                     Quick KPI Stats                                      │
+│                        (Total, Pass, Fail, Skipped, Interrupted)                         │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│                                     Quick KPI Stats                                      │
+│ (Avg. Duration, Slowest Test Duration, Fastest Test Duration, Total Tags, Failure Rate)  │
+├──────────────────────┬───────────────────────────────┬───────────────────────────────────┤
+│    Pass Rate Ring    │   Execution Efficiency Card   │       Test Health Breakdown       │
+│      (Radial %)      │      Wall-Clock Duration      │    (Passed, Failed, TimedOut,     │
+│                      │              vs.              │     Skipped, Interrupted bar)     │
+│                      │     Cumulative Sequential     │                                   │
+│                      │        Worker Duration        │                                   │
+└──────────────────────┴───────────────────────────────┴───────────────────────────────────┘
 ```
 
 ### Key Differences (`summary.html` vs `index.html`)

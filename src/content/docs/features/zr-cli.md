@@ -1,5 +1,5 @@
 ---
-title: "`zr` - Zen Reporter CLI"
+title: "zr - The Zen Reporter CLI"
 ---
 
 The **Zen Reporter Command-Line Interface (`zr` / `zen-reporter`)** provides a powerful suite of terminal utilities for managing, viewing, summarizing, and querying test run history in **Zen Reporter**. Powered by an embedded **DuckDB analytics engine**, `zr` allows developers and CI/CD pipelines to inspect test run results directly from the terminal, generate markdown summaries for Pull Requests, and run arbitrary SQL queries on historic JSONL run files.
@@ -30,13 +30,13 @@ npm run show
 ## 📜 CLI Architecture & Workflow
 
 ```text
-┌───────────────────────────────────────────────────────────────────────────┐
-│                           Zen Reporter CLI (`zr`)                         │
-├───────────────────┬──────────────────────┬────────────────────────────────┤
-│    `zr show`      │   `zr summary`       │         `zr history`           │
-│ Launches local    │ Markdown report      │   DuckDB-powered analytics     │
-│ Playwright viewer │ for CI / PR comments │ (runs, flaky, slow, SQL)       │
-└─────────┬─────────┴─────────┬────────────┴───────────────┬────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                Zen Reporter CLI (`zr`)                                 │
+├───────────────────┬──────────────────────┬───────────────────────────────┬─────────────┤
+│    `zr show`      │   `zr summary`       │         `zr history`          │  `zr env`   │
+│ Launches local    │ Markdown report      │   DuckDB-powered analytics    │ Environment │
+│ Playwright viewer │ for CI / PR comments │ (runs, flaky, slow, SQL)      │ details     │
+└─────────┬─────────┴─────────┬────────────┴───────────────┬───────────────┴─────────────┘
           │                   │                            │
           ▼                   ▼                            ▼
    zen-report/index.html   zen-report/report.json   zen-report/runs/*.jsonl
@@ -77,10 +77,11 @@ npx zr summary
 **Pass Rate:** 85.7%
 
 | Total | Passed | Failed | Timed Out | Skipped |
-| :---: | :---: | :---: | :-------: | :-----: |
-|   21  |   18  |   2   |     1     |    0    |
+| :---: | :----: | :----: | :-------: | :-----: |
+|  21   |   18   |   2    |     1     |    0    |
 
 #### ❌ Failed Tests (3)
+
 - **[chromium]** `tests/auth.spec.ts` › User login with invalid credentials
 - **[firefox]** `tests/checkout.spec.ts` › Complete purchase flow
 - **[webkit]** `tests/api.spec.ts` › Fetch user profile timeout
@@ -97,17 +98,43 @@ npx zr summary
 
 #### Subcommands
 
-| Subcommand | Description | Example Usage |
-| :--- | :--- | :--- |
-| `zr history` / `zr history runs` | Lists all recorded historical runs with overall pass/fail metrics. | `npx zr history runs` |
-| `zr history flaky` | Lists tests that failed in some runs and passed in others across history. | `npx zr history flaky` |
-| `zr history regressions` | Displays test cases that passed in an earlier run but regressed (failed) in subsequent runs. | `npx zr history regressions` |
-| `zr history slow [--limit N]` | Identifies the slowest tests across all runs by average duration (default limit 10). | `npx zr history slow --limit 15` |
-| `zr history trend` | Displays overall per-run pass rates over time. | `npx zr history trend` |
-| `zr history files` | Shows aggregate spec file historical metrics and overall pass rates. | `npx zr history files` |
-| `zr history tests` | Shows aggregate individual test execution metrics. | `npx zr history tests` |
-| `zr history report` | Compiles `history.json` and embeds history data directly into `index.html` for the web UI History tab. | `npx zr history report` |
-| `zr history query "<SQL>"` | Executes an arbitrary SQL query against historic run files using DuckDB SQL. | `npx zr history query "SELECT * FROM runs WHERE status='failed'"` |
+| Subcommand                       | Description                                                                                            | Example Usage                                                     |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
+| `zr history` / `zr history runs` | Lists all recorded historical runs with overall pass/fail metrics.                                     | `npx zr history runs`                                             |
+| `zr history flaky`               | Lists tests that failed in some runs and passed in others across history.                              | `npx zr history flaky`                                            |
+| `zr history regressions`         | Displays test cases that passed in an earlier run but regressed (failed) in subsequent runs.           | `npx zr history regressions`                                      |
+| `zr history slow [--limit N]`    | Identifies the slowest tests across all runs by average duration (default limit 10).                   | `npx zr history slow --limit 15`                                  |
+| `zr history trend`               | Displays overall per-run pass rates over time.                                                         | `npx zr history trend`                                            |
+| `zr history files`               | Shows aggregate spec file historical metrics and overall pass rates.                                   | `npx zr history files`                                            |
+| `zr history tests`               | Shows aggregate individual test execution metrics.                                                     | `npx zr history tests`                                            |
+| `zr history report`              | Compiles `history.json` and embeds history data directly into `index.html` for the web UI History tab. | `npx zr history report`                                           |
+| `zr history query "<SQL>"`       | Executes an arbitrary SQL query against historic run files using DuckDB SQL.                           | `npx zr history query "SELECT * FROM runs WHERE status='failed'"` |
+
+---
+
+### 4. `zr env`
+
+Prints environment diagnostic information to stdout, useful for verifying package versions and debugging environment setup in CI/CD pipelines or local development. If you ever need to report a bug against Zen Reporter, then this command can come handy.
+
+```bash
+npx zr env
+```
+
+#### Reported Details
+
+- **`zen-reporter` version**: Installed version of Zen Reporter.
+- **`@playwright/test` version**: Installed Playwright framework version.
+- **Node.js version**: Active Node.js runtime version.
+- **OS**: Host operating system and platform architecture.
+
+#### Example Output
+
+```text
+zen-reporter version: 0.11.0
+@playwright/test version: 1.63.0
+Node.js version: v20.11.0
+OS: macOS
+```
 
 ---
 
@@ -122,6 +149,8 @@ npx zr summary
    - Timestamps (`_at`) are formatted into ISO local dates (`YYYY-MM-DD HH:MM:SS`).
    - Numbers and percentages are right-aligned while text fields remain left-aligned.
 
+![ZR History Terminal Table](../../../assets/screenshots/zr-history-terminal-table.png)
+
 ---
 
 ## ⚡ Custom SQL Querying with `zr history query`
@@ -132,6 +161,8 @@ The `query` subcommand grants full access to DuckDB's SQL syntax. The table/view
 # Query failed tests in WebKit project with duration > 5000ms
 npx zr history query "SELECT file, title, duration_ms FROM runs WHERE project = 'webkit' AND status = 'failed' AND duration_ms > 5000 ORDER BY duration_ms DESC"
 ```
+
+> Tip: Use [JSONL schema](../history-archiving/#jsonl-schema-structure) to construct your queries.
 
 ---
 

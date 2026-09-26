@@ -3,13 +3,13 @@ title: "Suite & Spec File Explorer"
 ---
 
 
-Organizing large test suites with hundreds of `describe` blocks and spec files can be overwhelming. Zen Reporter provides two dedicated explorer views: **Suites** (interactive tree view) and **Files** (paginated spec file metrics table).
+Viewing test results of a large test suites with hundreds of `describe` blocks and spec files can be overwhelming. Zen Reporter provides two dedicated explorer views: **Suites** (interactive tree view) and **Files** (paginated spec file metrics table).
 
 ---
 
 ## 🌳 Interactive Suite Tree View (`Suites` Tab)
 
-The **Suites** tab converts raw nested Playwright `test.describe()` groups into a collapsible hierarchy tree view.
+The **Suites** tab presents raw nested Playwright `test.describe()` groups into a collapsible hierarchy tree view.
 
 ```text
 📁 e2e/auth/login.spec.ts
@@ -24,11 +24,13 @@ The **Suites** tab converts raw nested Playwright `test.describe()` groups into 
 
 - **Nested Describe Collapsibility**: Infinite nesting support for `test.describe()` groups with interactive collapse/expand toggle controls.
 - **Bulk Expand / Collapse Controls**: Header buttons to expand all nodes or collapse all nodes in a single click.
-- **Full-Text Live Search Filter**: Filter the entire suite tree by test name, tag (e.g., `@smoke`, `@regression`), spec file path, or status.
+- **Full-Text Live Search Filter**: Filter the entire suite tree by execution status, project name, tag (e.g., `@smoke`, `@regression`), or spec file name.
 - **Retry Attempt Badges**: Clearly labels test cases that required retries to pass, displaying retry counts and attempt history.
-- **Status & Duration Indicators**: Color-coded icons (🟢 Passed, 🔴 Failed, 🟡 Timed Out, ⚪ Skipped) with precise execution duration tags for each test case.
+- **Status & Duration Indicators**: Color-coded icons (🟢 Passed, 🔴 Failed, 🟡 Timed Out, 🔴 Interrupted, ⚪ Skipped) with precise execution duration tags for each test case.
 - **Inline Test Case Cards**: Click on any test node to open detailed execution metrics, console logs, and step execution details.
 - **Attachment Previews & Quick Downloads**: Interactive attachment modal supporting in-app previews for text logs, failure screenshots, and execution video recordings, along with one-click quick downloads for Playwright `.zip` trace files.
+
+![Suites Tab](../../../assets/screenshots/suites.png)
 
 ---
 
@@ -86,7 +88,7 @@ A comprehensive paginated breakdown table (`File Breakdown Summary`):
 ## 💡 Best Practices
 
 1. **Tag Filtering**: Use Playwright test tags (`@smoke`, `@critical`, `@flaky`) in your test titles. Type `@smoke` into the search filter to instantly filter the tree view down to your target test suite.
-2. **Isolating Failure Hotspots**: Check the **Failure Concentration** card and sort the **File Breakdown Summary** table by Pass Rate ascending to pinpoint which spec files contribute most to build instability.
+2. **Isolating Failure Hotspots**: Review the **Failure Concentration** card and examine the **File Breakdown Summary** table to identify spec files with low Pass Rates that contribute most to build instability.
 3. **Analyzing Duration Bottlenecks**: Inspect the **Longest Execution Spec Files** card to identify top long-running spec files and optimize parallel worker allocation or split test cases.
 4. **Inspecting Media & Trace Attachments**: Open test case cards directly from the **Suites** tree to preview failure screenshots, watch video recordings, and download Playwright `.zip` trace files for deep offline debugging.
 5. **Exporting Metrics for BI & Reporting**: Click **Export CSV** in the **Files** tab to generate CSV reports for offline archiving or integration with QA management dashboards.

@@ -1,0 +1,14 @@
+/* Custom styles for Zen Reporter documentation website */
+
+/* Allow centering markdown tables when wrapped in <div align="center"> or <div style="display: flex; justify-content: center;"> */
+.sl-markdown-content div[align="center"] table,
+.sl-markdown-content div[style*="justify-content: center"] table {
+  display: table !important;
+  margin-inline: auto !important;
+}
+
+/* Also ensure images inside centered divs or table cells are aligned properly */
+.sl-markdown-content div[align="center"] img {
+  margin-inline: auto !important;
+  display: block !important;
+}

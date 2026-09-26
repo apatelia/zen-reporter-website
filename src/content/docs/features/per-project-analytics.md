@@ -5,25 +5,31 @@ title: "Per-Project Execution Analytics"
 
 Modern Playwright test suites frequently execute the same test files across multiple project profiles (e.g., Desktop Chrome, Desktop Firefox, Mobile Safari, API Testing). The **Projects** tab in Zen Reporter isolates and compares metrics across each configured Playwright project.
 
+![Projects](../../../assets/screenshots/projects.png)
+
 ---
 
 ## 📊 Projects Tab Overview
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        Per-Project Analytics                           │
+│                         Per-Project Analytics                          │
 ├────────────────────────────────────────────────────────────────────────┤
-│                     Project Breakdown Summary                          │
-│     Total Projects, Most Active Project, Highest Failure Rate Profile  │
+│                       Project Breakdown Summary                        │
+│         Total Projects, Most Stable Project, Slowest Project,          │
+│              Pass Rate Parity Variance, Total Flaky Tests              │
 ├────────────────────────────────────────────────────────────────────────┤
-│                       Status Distribution Chart                        │
-│    Stacked / Grouped Bar Charts of Passed/Failed/Skipped per Project   │
+│                        Status Distribution Chart                       │
+│         Stacked / Grouped Bar Charts of Passed/Failed/Skipped/         │
+│                   Interrupted/Timed out per Project                    │
 ├────────────────────────────────────────────────────────────────────────┤
 │                  Volume & Coverage Distribution Chart                  │
-│       Comparison of Test Counts and Wall-Clock Durations per Profile   │
+│           Comparison of Test Counts and Wall-Clock Durations           │
+│                          per Project Profile                           │
 ├────────────────────────────────────────────────────────────────────────┤
-│                         Project Detail Cards                           │
-│  Detailed Breakdown Cards per Project Profile with Pass Rate & Duration│
+│                          Project Detail Cards                          │
+│              Detailed Breakdown Cards per Project Profile              │
+│                       with Pass Rate & Duration                        │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -36,8 +42,10 @@ Modern Playwright test suites frequently execute the same test files across mult
 High-level summary metrics at the top of the Projects view:
 
 - **Total Projects**: Total number of Playwright project targets executed in the run.
-- **Top Executed Project**: Project containing the largest total test case count.
-- **Highest Failure Profile**: Highlights which specific project profile suffered the lowest pass rate percentage.
+- **Most Stable Project**: Identifies the project target achieving the highest pass rate percentage.
+- **Slowest Project**: Highlights the project profile taking the longest cumulative execution time.
+- **Parity Variance**: Measures the pass rate gap percentage across targets to spot cross-browser or cross-environment instability.
+- **Total Flaky Tests**: Tracks the total number of test cases across project targets that required retries to pass.
 
 ### 2. Status Distribution Chart
 
@@ -52,11 +60,19 @@ High-level summary metrics at the top of the Projects view:
 
 ### 4. Project Detail Cards
 
-Comprehensive standalone cards for every Playwright project profile:
+Comprehensive standalone cards for every Playwright project profile under the **Project Health & Breakdown** view:
 
-- **Pass Rate Badge**: Color-coded percentage tag indicating profile health.
-- **Metrics Grid**: Total tests, passed, failed, timed-out, skipped, and average duration per test case.
-- **Direct Filtering**: Clicking on a project profile filters the rest of the report view to show only specs and failures for that project.
+- **Search & Sort Controls**: Filter project cards by name via the search input or sort them using metrics such as Highest Pass Rate.
+- **Project Header & Pass Rate Progress Bar**: Displays project profile name, speed factor badge, total tests executed across spec files, and pass rate percentage badge with a color-coded visual progress bar.
+- **Metrics Grid**: Standardized metric breakdown cards for each project:
+  - **Status Breakdown**: Color-coded counts of Passed, Failed, Timed Out, and Skipped tests.
+  - **Total & Average Duration**: Total execution duration and average runtime per test case.
+  - **P95 Latency**: 95th percentile latency benchmark.
+  - **Flaky / Retries**: Count and percentage of tests requiring retries to pass.
+  - **Scope & Tags**: Total spec files and distinct tags associated with the project.
+- **Inline Collapsible Failure Breakdown**: Expandable list displaying failing, timed out, and interrupted test cases per project with status tags, execution runtimes, and direct inspection options.
+
+![Project Detail Card](../../../assets/screenshots/project-detail-card.png)
 
 ---
 

@@ -11,9 +11,11 @@ Zen Reporter includes a zero-dependency, RFC 4180-compliant CSV export engine. I
 
 In all major tabular views throughout the dashboard (Spec Files table, History tables, File & Test History tables, Insights tables), a prominent **Export CSV** button is available:
 
-```text
-  [ 📥 Export CSV ]
-```
+<div align="center">
+
+![Export CSV Button](../../../assets/screenshots/export-csv-button.png)
+
+</div>
 
 Clicking the button immediately triggers a browser download of the actively rendered table dataset.
 

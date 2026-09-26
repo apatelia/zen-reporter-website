@@ -65,9 +65,13 @@ Provides granular historical tracking for individual test cases:
 - **Date-Range Filtering**: Filter historical records using interactive date picker controls
 - **Text Search**: Search by visible columns (Test Title, Suite, Spec File, and Project).
 
-### 4. Trends View & Charts
+![History Log](../../../assets/screenshots/history-log.png)
+
+## 📈 Trends View & Charts
 
 The **Trends** tab in report UI visualizes long-term quality, performance, and test composition metrics across multiple historical runs using interactive Recharts visualization:
+
+![Trends](../../../assets/screenshots/trends.png)
 
 - **Pass Rate Trend Chart**:
   - **Pass Rate Percentage**: Interactive line chart rendering historical pass rate percentages across the 15 most recent runs.

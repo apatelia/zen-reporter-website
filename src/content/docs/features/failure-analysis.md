@@ -30,7 +30,7 @@ Analyzes stack trace messages and error locations across all failed tests to clu
 
 ## 🛠️ Granular Failure Inspection Tools
 
-Clicking on any failed test case opens the comprehensive `TestCaseDetail` diagnostic modal:
+Clicking on any failed test case opens the comprehensive diagnostic modal:
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -63,7 +63,7 @@ Clicking on any failed test case opens the comprehensive `TestCaseDetail` diagno
 
 ### 1. Target Step Indicator (`▶`)
 
-In the step-by-step execution timeline, Zen Reporter pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`). No more scrolling through hundreds of passed setup steps to find the assertion failure.
+In the step-by-step execution trace, Zen Reporter pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`). No more scrolling through numerous passed steps to find the assertion failure.
 
 ### 2. Syntax-Highlighted Code Frame Snippets
 
@@ -82,7 +82,7 @@ When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Ze
 
 ### 5. Attachments & Artifact Integration
 
-Direct access toPlaywright test artifacts:
+Direct access to Playwright test artifacts:
 
 - **Screenshots**: Inline image previews for failure snapshots.
 - **Videos**: Built-in video player for test execution recordings (`video: 'retain-on-failure'`).

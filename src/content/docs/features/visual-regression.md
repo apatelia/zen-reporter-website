@@ -9,24 +9,13 @@ Playwright screenshot assertion tests (`expect(page).toHaveScreenshot()`) genera
 
 ## 🖼️ Comparison View Modes
 
-When a visual regression failure occurs, Zen Reporter automatically extracts image attachment pairs (`actual` / received, `expected` / baseline, and `diff`) and presents 4 interactive inspection modes via top toolbar buttons:
+When a visual regression failure occurs, Zen Reporter automatically extracts image attachment pairs (`actual` / received, `expected` / baseline, and `diff`) and presents 4 interactive inspection modes via top toolbar buttons: Slider, 2-Up, Diff Overlay and Onion Skin.
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────────────────┐
-│ VISUAL REGRESSION COMPARISON                                                               │
-│ ┌────────────────────────────────────────────────────────────────────────────────────────┐ │
-│ │ Visual Regression Diff                                                                 │ │
-│ │ card-snapshot                      [ Slider ] [ 2-Up ] [ + Diff Overlay ] [ Onion Skin]│ │
-│ ├────────────────────────────────────────────────────────────────────────────────────────┤ │
-│ │ ┌─────────────────────────────────────┬──────────────────────────────────────────────┐ │ │
-│ │ │ Expected / Baseline                 │ Actual / Received                            │ │ │
-│ │ │                                     │                                              │ │ │
-│ │ │              [EXPECTED]             │ < > [ACTUAL]                                 │ │ │
-│ │ │             Zen Reporter            │      Visual Diff                             │ │ │
-│ │ └─────────────────────────────────────┴──────────────────────────────────────────────┘ │ │
-│ └────────────────────────────────────────────────────────────────────────────────────────┘ │
-└────────────────────────────────────────────────────────────────────────────────────────────┘
-```
+<div align="center">
+
+![Visual Regression Diff Modes](../../../assets/screenshots/vr-diff-modes.png)
+
+</div>
 
 ---
 
@@ -37,20 +26,28 @@ When a visual regression failure occurs, Zen Reporter automatically extracts ima
 - **Interactive Split-Screen**: Superimposes the Expected (Baseline) and Actual (Received) images directly on top of each other with a central draggable vertical divider handle `< >`.
 - **Precision Drag Inspection**: Drag the slider handle horizontally across the viewport canvas to continuously reveal pixel-perfect differences between baseline and actual test snapshots.
 
+![Visual Regression Diff - Slider mode](../../../assets/screenshots/visual-regression.png)
+
 ### 2. Side-by-Side 2-Up Viewer (`2-Up`)
 
 - **Dual-Pane Grid Layout**: Displays the **Expected / Baseline** image and **Actual / Received** image side-by-side in synchronized image frames.
 - **Use Case**: Enables quick side-by-side visual comparison of structural layout shifts, element positioning changes, or broad content updates across viewports.
 
+![Visual Regression Diff - 2 Up Mode](../../../assets/screenshots/vr-2-up.png)
+
 ### 3. Difference Highlight Overlay (`Diff Overlay`)
 
-- **Pixel Difference Mask**: Overlays Playwright's generated red/magenta difference highlight mask directly on top of the baseline image.
-- **Visual Error Isolation**: Instantly pinpoints exact pixel-level color or boundary deviations that caused screenshot assertion failures.
+- **Pixel Difference Overlay**: Superimposes Expected and Actual image layers with highlights to clearly distinguish baseline elements from actual test output.
+- **Visual Error Isolation**: Instantly pinpoints exact pixel-level color, text, or boundary deviations that caused screenshot assertion failures.
+
+![Visual Regression Diff - Overlay Mode](../../../assets/screenshots/vr-diff-overlay.png)
 
 ### 4. Onion Skin Transparency Blend (`Onion Skin`)
 
 - **Variable Opacity Blending**: Blends the Actual / Received image over the Expected / Baseline image using an interactive transparency slider.
 - **Subtle Shift Detection**: Allows smooth opacity fading between baseline and current state to detect subtle element misalignments, font weight shifts, or padding changes.
+
+![Visual Regression Diff - Onion Skin Mode](../../../assets/screenshots/vr-diff-onion-skin.png)
 
 ---
 

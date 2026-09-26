@@ -16,6 +16,30 @@ Zen Reporter features three pre-built design themes built with WCAG-compliant co
 | **`Concept`**          | Modern tech theme with vibrant indigo/slate UI surfaces - inspired by Notion’s color palette.                                                  | Indigo / Slate          |
 | **`Sentinel`**         | High-contrast cybersecurity theme utilizing deep purple-violet midnight canvas and crisp warning accents - inspired by Sentry’s color palette. | Purple-Violet / Navy    |
 
+### Cafe Theme
+
+Light mode:
+![Cafe Theme - Light Mode](../../../assets/screenshots/light-mode.png)
+
+Dark mode:
+![Cafe Theme - Dark Mode](../../../assets/screenshots/dark-mode.png)
+
+### Concept Theme
+
+Light mode:
+![Concept Theme - Light Mode](../../../assets/screenshots/concept-theme-light.png)
+
+Dark mode:
+![Concept Theme - Dark Mode](../../../assets/screenshots/concept-theme-dark.png)
+
+### Sentinel Theme
+
+Light mode:
+![Sentinel Theme - Light Mode](../../../assets/screenshots/sentinel-theme-light.png)
+
+Dark mode:
+![Sentinel Theme - Dark Mode](../../../assets/screenshots/sentinel-theme-dark.png)
+
 ---
 
 ## ⚙️ Initial Theme & Dark Mode Setup
@@ -46,3 +70,9 @@ Regardless of the initial configuration set in `playwright.config.ts`, users vie
 
 - **Dark Mode Button**: Located in the top navigation header bar to switch between Light Mode and Dark Mode instantly.
 - **Theme Selector Dropdown**: Switch between `Cafe`, `Concept`, and `Sentinel` themes dynamically without reloading the report.
+
+<div align="center">
+
+![UI Toggle](../../../assets/screenshots/ui-toggle.png)
+
+</div>

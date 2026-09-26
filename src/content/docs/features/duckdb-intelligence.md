@@ -59,6 +59,8 @@ Ranks top slowest test cases based on average duration across all recorded histo
 
 Calculates the 95th percentile execution duration threshold across project profiles to highlight performance outliers.
 
+![P95 Latency](../../../assets/screenshots/p95-latency.png)
+
 ---
 
 ## 💻 CLI Command Reference (`zr history`)
@@ -81,6 +83,8 @@ Calculates the 95th percentile execution duration threshold across project profi
 ---
 
 ## 🔍 Custom SQL Queries Interface (`zr history query`)
+
+> Tip: Use [JSONL schema](../history-archiving/#jsonl-schema-structure) to construct your queries.
 
 You can query your test execution logs directly using standard SQL via DuckDB:
 
