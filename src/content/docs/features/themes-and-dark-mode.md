@@ -52,7 +52,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   reporter: [
     [
-      "zen-reporter",
+      "@arpanp/zen-reporter",
       {
         theme: "Concept", // 'Cafe' | 'Concept' | 'Sentinel' (default: 'Cafe')
         darkMode: true, // Set to true to initialize dashboard in Dark Mode

@@ -61,7 +61,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   reporter: [
     [
-      "zen-reporter",
+      "@arpanp/zen-reporter",
       {
         projectName: "E2E Web Suite", // Displayed as main header title
         testRunName: "Release v2.4.0", // Displayed in accent badge
@@ -183,7 +183,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   reporter: [
     [
-      "zen-reporter",
+      "@arpanp/zen-reporter",
       {
         enableHistory: true, // Set to false to disable history & show warning badges
         minimalReport: false, // Set to true to filter sidebar to essential tabs only

@@ -62,7 +62,7 @@ If you plan to use historical trend analysis, test regression tracking, or DuckD
 
 ## ⚙️ Step 2: Configure Playwright
 
-Add `zen-reporter` to your Playwright configuration file (`playwright.config.ts` or `playwright.config.js`).
+Add `@arpanp/zen-reporter` to your Playwright configuration file (`playwright.config.ts` or `playwright.config.js`).
 
 ### Basic Setup (Default Options)
 
@@ -70,7 +70,7 @@ Add `zen-reporter` to your Playwright configuration file (`playwright.config.ts`
 import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  reporter: "zen-reporter",
+  reporter: "@arpanp/zen-reporter",
 });
 ```
 
@@ -84,7 +84,7 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   reporter: [
     [
-      "zen-reporter",
+      "@arpanp/zen-reporter",
       {
         outputDir: "zen-report",
         projectName: "E2E Web Suite",

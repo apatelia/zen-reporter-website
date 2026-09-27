@@ -27,7 +27,7 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   reporter: [
     [
-      'zen-reporter',
+      '@arpanp/zen-reporter',
       {
         outputDir: 'zen-report',
         singleSummaryFile: true, // Generates summary.html alongside index.html
