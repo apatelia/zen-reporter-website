@@ -2,6 +2,7 @@
 import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import { defineConfig } from 'astro/config';
+import starlightImageZoom from 'starlight-image-zoom';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
   integrations: [
     mermaid(),
     starlight({
+      plugins: [ starlightImageZoom() ],
       title: 'Zen Reporter',
       favicon: '/favicon.png',
       logo: {
