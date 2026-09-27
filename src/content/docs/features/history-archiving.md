@@ -47,6 +47,8 @@ Lists past test execution runs in reverse chronological order:
   - 🔴 **Critical**: Pass rate < 80%
 - **Date-Range Filtering**: Filter historical records using interactive date picker controls
 
+![History Log](../../../assets/screenshots/history-log.png)
+
 ### 2. File History View
 
 Aggregates historical performance at the spec file level over time:
@@ -55,6 +57,8 @@ Aggregates historical performance at the spec file level over time:
 - **Execution Counts**: Monitor how frequently spec files were executed.
 - **Date-Range Filtering**: Filter historical records using interactive date picker controls
 - **Text Search**: Instantly filter spec files by filename or path substring.
+
+![File History](../../../assets/screenshots/files-history.png)
 
 ### 3. Test History View
 
@@ -65,7 +69,7 @@ Provides granular historical tracking for individual test cases:
 - **Date-Range Filtering**: Filter historical records using interactive date picker controls
 - **Text Search**: Search by visible columns (Test Title, Suite, Spec File, and Project).
 
-![History Log](../../../assets/screenshots/history-log.png)
+![Test History](../../../assets/screenshots/test-history.png)
 
 ## 📈 Trends View & Charts
 
@@ -85,6 +89,8 @@ The **Trends** tab in report UI visualizes long-term quality, performance, and t
   - **Execution Time Distribution**: Visualizes breakdown of time spent in different Playwright test step categories (e.g. `hook`, `fixture`, `test.step`, `expect` assertion, `pw:api`).
   - **Current vs. Historical Averages**: Compares current run step distribution against historical benchmarks to detect assertion or setup/teardown regressions.
 
+![Step Category Composition Trend](../../../assets/screenshots/step-category-composition.png)
+
 ---
 
 ## 💡 Managing History Archives
@@ -99,4 +105,4 @@ npx zr history report
 
 ### Disabling History
 
-For single-run disposable CI environments, disable history archiving by setting `enableHistory: false` or `minimalReport: true` in your Playwright config.
+For single-run disposable CI environments, disable history archiving by setting `enableHistory: false` or `minimalReport: true` in your [Playwright config](../../configuration/#7-minimalreport-boolean).

@@ -163,23 +163,3 @@ npx zr history query "SELECT file, title, duration_ms FROM runs WHERE project = 
 ```
 
 > Tip: Use [JSONL schema](../history-archiving/#jsonl-schema-structure) to construct your queries.
-
----
-
-## 💡 CI/CD Integration Examples
-
-### GitHub Actions PR Commenting
-
-```yaml
-- name: Run Playwright Tests
-  run: npx playwright test
-  continue-on-error: true
-
-- name: Output Test Summary to PR
-  run: |
-    echo "## Playwright Test Results" >> $GITHUB_STEP_SUMMARY
-    npx zr summary >> $GITHUB_STEP_SUMMARY
-
-- name: Build History Report
-  run: npx zr history report
-```

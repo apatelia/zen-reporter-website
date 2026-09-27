@@ -64,6 +64,12 @@ export default defineConfig({
 └──────────────────────┴───────────────────────────────┴───────────────────────────────────┘
 ```
 
+![Summary HTML](../../../assets/screenshots/summary-html.png)
+
+<div align="center">
+summary.html
+</div>
+
 ### Key Differences (`summary.html` vs `index.html`)
 
 | Feature                    | `index.html` (Full Report)                                                         | `summary.html` (Executive Summary) |

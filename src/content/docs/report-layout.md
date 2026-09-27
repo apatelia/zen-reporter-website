@@ -131,14 +131,22 @@ The **Failures** tab features an automated real-time issue badge summarizing tot
 
 > **Issue Count** = `Failed Tests + Timed Out Tests + Interrupted Tests`
 
+<div align="center">
+
 ![Failures Badge](../../assets/screenshots/failures-badge.png)
+
+</div>
 
 - **Expanded Mode**: Displays a solid red badge on the right edge of the tab with the total count (e.g., `10`).
 - **Collapsed Mode**: Displays a compact red notification dot pinned to the top-right corner of the warning icon.
 
 #### 2. History Disabled Indicator
 
+<div align="center">
+
 ![History Disabled Badge](../../assets/screenshots/history-disabled.png)
+
+</div>
 
 When historical run archiving is disabled in configuration (`enableHistory: false`), historical analytics tabs (**History**, **Trends**, and **Insights**) display warning badges:
 

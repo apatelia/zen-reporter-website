@@ -31,6 +31,7 @@ Detects test cases that alternate between passing and failing across historical 
 - **Criteria**: Flags tests that failed in at least 1 run and passed in at least 1 run.
 - **Metrics**: Total runs, failure count, pass count, and retry recovery rate.
 - **CLI Command**:
+
   ```bash
   npx zr history flaky
   ```
@@ -41,6 +42,7 @@ Identifies test cases that passed in previous runs but regressed to **Failed** o
 
 - **Value**: Separates newly broken features from known broken or flaky tests.
 - **CLI Command**:
+
   ```bash
   npx zr history regressions
   ```
@@ -49,10 +51,11 @@ Identifies test cases that passed in previous runs but regressed to **Failed** o
 
 Ranks top slowest test cases based on average duration across all recorded historical runs.
 
-- **Limit Parameter**: Support for custom top-$N$ threshold output (`--limit N`).
+- **Limit Parameter**: Support for custom top-N threshold output (`--limit N`).
 - **CLI Command**:
+
   ```bash
-  npx zr history slow --limit 15
+  npx zr history slow --limit 5
   ```
 
 ### 4. P95 Duration & Profile Latency

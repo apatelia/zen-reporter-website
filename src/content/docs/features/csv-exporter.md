@@ -50,8 +50,8 @@ Unlike simple DOM table scraping utilities, Zen Reporter's CSV engine exports th
 
 ## 📑 Supported Export Tables
 
-- **Spec Files Table**: Spec file path, total tests, pass count, fail count, timed-out count, skipped count, pass rate %, total duration.
-- **Historical Runs Table**: Run ID, run name, start timestamp, wall-clock duration, total tests, pass rate %, quality rating.
-- **File History Table**: File path, run date, total tests, pass count, failure breakdown.
-- **Test Case History Table**: Test title, describe hierarchy, spec file, project, total runs, pass rate, average duration.
-- **Insights & Intelligence Tables**: Flaky test lists, regression lists, and top slowest test cases.
+- **Spec Files Table [Files tab]**: Spec file path, total tests, pass count, fail count, timed-out count, skipped count, pass rate %, total duration.
+- **Historical Runs Table [History tab]**: Run ID, run name, start timestamp, wall-clock duration, total tests, pass rate %, quality rating.
+- **File History Table [History tab]**: File path, run date, total tests, pass count, failure breakdown.
+- **Test Case History Table [History tab]**: Test title, describe hierarchy, spec file, project, total runs, pass rate, average duration.
+- **Insights & Intelligence Tables [Insights tab]**: Flaky test lists, regression lists, and top slowest test cases.

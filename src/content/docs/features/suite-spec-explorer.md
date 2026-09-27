@@ -7,7 +7,7 @@ Viewing test results of a large test suites with hundreds of `describe` blocks a
 
 ---
 
-## 🌳 Interactive Suite Tree View (`Suites` Tab)
+## 🌳 Interactive Suite Tree (`Suites` Tab)
 
 The **Suites** tab presents raw nested Playwright `test.describe()` groups into a collapsible hierarchy tree view.
 
@@ -34,7 +34,7 @@ The **Suites** tab presents raw nested Playwright `test.describe()` groups into 
 
 ---
 
-## 📄 Spec Files Summary View (`Files` Tab)
+## 📄 Spec Files View (`Files` Tab)
 
 The **Files** tab aggregates test execution metrics at the spec file level, giving QA managers and engineers a file-by-file breakdown of suite health, execution density, and duration ranking.
 
@@ -47,6 +47,12 @@ A top horizontal bar summarizing overall spec file statistics:
 - **Failing Spec Files**: Count of spec files containing test errors (e.g., `4` with a `40% of files have errors` badge).
 - **Files with Retries**: Count of spec files requiring test retries to complete (e.g., `1` with a `10% of files required retries` badge).
 - **Failure Concentration**: Percentage ratio of failure concentration pointing to the top failing spec file (e.g., `40%` concentrated in `/tests/failures.spec.ts`).
+
+<div align="center">
+
+![Files KPI Cards](../../../assets/screenshots/files-kpi.png)
+
+</div>
 
 ---
 
@@ -62,23 +68,16 @@ Two side-by-side analytical cards providing execution distribution metrics:
 - **Longest Execution Spec Files Card**:
   - Ranks the **Top 5 Spec Files by Duration** with visual progress bars indicating test count and wall-clock execution time (e.g., `/tests/failures.spec.ts` - `8 tests, 1m 0s`).
 
+![Files Density & Distribution](../../../assets/screenshots/files-density-distribution.png)
+![Files Longest Execution](../../../assets/screenshots/files-longest-execution.png)
+
 ---
 
 ### 3. File Breakdown Summary Table
 
 A comprehensive paginated breakdown table (`File Breakdown Summary`):
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                       File Breakdown Summary                              [Export CSV] │
-├────────────────────────────┬───────┬────────┬────────┬───────────┬─────────────┬─────────┬─────────────┤
-│ File                       │ Total │ Passed │ Failed │ Timed Out │ Interrupted │ Skipped │  Pass Rate  │
-├────────────────────────────┼───────┼────────┼────────┼───────────┼─────────────┼─────────┼─────────────┤
-│ /tests/config.spec.ts      │   10  │  (10)  │  (0)   │    (0)    │     (0)     │   (0)   │    100%     │
-│ /tests/step-details.spec.ts│   10  │  (10)  │  (0)   │    (0)    │     (0)     │   (0)   │    100%     │
-│ /tests/failures.spec.ts    │    8  │   (0)  │  (2)   │    (2)    │     (0)     │   (4)   │      0%     │
-└────────────────────────────┴───────┴────────┴────────┴───────────┴─────────────┴─────────┴─────────────┘
-```
+![Files Breakdown Summary Table](../../../assets/screenshots/files-breakdown-summary.png)
 
 - **Pill Badges**: Color-coded pill counters for Passed (green), Failed (red), Timed Out (yellow), Interrupted (red), and Skipped (blue) case counts.
 - **Export to CSV**: Includes an explicit **Export CSV** button to export the full file breakdown dataset into CSV format.

@@ -30,13 +30,18 @@ Analyzes stack trace messages and error locations across all failed tests to clu
 
 ## 🛠️ Granular Failure Inspection Tools
 
-Clicking on any failed test case opens the comprehensive diagnostic modal:
+Clicking on any failed test case opens the comprehensive diagnostic details:
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
 │ 🔴 test("User checkout completes") - Attempt #2 (Failed)               │
 ├────────────────────────────────────────────────────────────────────────┤
 │ [ Run 1 (Failed) ]  [ Run 2 - Retry #1 (Failed) ]                      │
+├────────────────────────────────────────────────────────────────────────┤
+│ Step-by-Step Execution Trace                                           │
+│   ✅ 1. Navigate to /cart (230ms)                                      │
+│   ✅ 2. Fill credit card details (450ms)                               │
+│ ▶ 🔴 3. Click #checkout-btn (5000ms - FAILED)                          │
 ├────────────────────────────────────────────────────────────────────────┤
 │ Error Stack Trace & Syntax Highlighted Code Frame                      │
 │   > 42 | await page.locator('#checkout-btn').click();                  │
@@ -47,15 +52,12 @@ Clicking on any failed test case opens the comprehensive diagnostic modal:
 │   Expected: "Order Confirmed"                                          │
 │   Received: "Payment Processing Error"                                 │
 ├────────────────────────────────────────────────────────────────────────┤
-│ Step-by-Step Execution Trace                                           │
-│   ✅ 1. Navigate to /cart (230ms)                                      │
-│   ✅ 2. Fill credit card details (450ms)                               │
-│ ▶ 🔴 3. Click #checkout-btn (5000ms - FAILED)                          │
-├────────────────────────────────────────────────────────────────────────┤
 │ Attachments & Logs                                                     │
 │   [ 📷 trace-screenshot.png ]  [ 🎥 video.webm ]  [ 📄 trace.zip ]     │
 └────────────────────────────────────────────────────────────────────────┘
 ```
+
+![Failure Diagnostics Details](../../../assets/screenshots/failure-diagnostics.png)
 
 ---
 
@@ -65,9 +67,13 @@ Clicking on any failed test case opens the comprehensive diagnostic modal:
 
 In the step-by-step execution trace, Zen Reporter pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`). No more scrolling through numerous passed steps to find the assertion failure.
 
+![Target Step Indicator](../../../assets/screenshots/step-indicator.png)
+
 ### 2. Syntax-Highlighted Code Frame Snippets
 
 Extracts source code lines directly from Playwright test files and renders inline syntax highlighting with context lines surrounding the failed assertion line.
+
+![Code Snippet](../../../assets/screenshots/code-snippet.png)
 
 ### 3. Structured Diff Stack Trace (`Expected` vs. `Received`)
 
@@ -76,14 +82,23 @@ For Playwright `expect()` value assertion mismatches, Zen Reporter formats visua
 - 🟢 **Expected**: Expected object structure or baseline text.
 - 🔴 **Received**: Actual runtime output returned by the application under test.
 
+![Stack Trace](../../../assets/screenshots/stack-trace.png)
+
 ### 4. Retry Attempt Inspection Tabs (`Run`, `Retry #1`, `Retry #2`)
 
 When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Zen Reporter creates dedicated tab panels for each execution attempt. Users can inspect trace steps, console logs, and screenshots for both the initial failing attempt and subsequent retries, in a single place.
+
+![Retry Attempts](../../../assets/screenshots/retry-attempts.png)
 
 ### 5. Attachments & Artifact Integration
 
 Direct access to Playwright test artifacts:
 
+- **Text Artifacts**: Inline previews for text file artifacts.
 - **Screenshots**: Inline image previews for failure snapshots.
 - **Videos**: Built-in video player for test execution recordings (`video: 'retain-on-failure'`).
 - **Trace Viewer Downloads**: One-click direct link to Playwright trace files (`trace: 'retain-on-failure'`).
+
+![Attachments](../../../assets/screenshots/attachment.png)
+![Screenshot Preview](../../../assets/screenshots/screenshot-preview.png)
+![Video Preview](../../../assets/screenshots/video-preview.png)
