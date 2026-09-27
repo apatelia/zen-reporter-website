@@ -17,7 +17,7 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   reporter: [
     [
-      'zen-reporter',
+      '@arpanp/zen-reporter',
       {
         outputDir: 'zen-report',
         projectName: 'My Application E2E',
