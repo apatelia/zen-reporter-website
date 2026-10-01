@@ -67,13 +67,21 @@ Clicking on any failed test case opens the comprehensive diagnostic details:
 
 In the step-by-step execution trace, Zen Reporter pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`). No more scrolling through numerous passed steps to find the assertion failure.
 
+<div align="center">
+
 ![Target Step Indicator](../../../assets/screenshots/step-indicator.png)
+
+</div>
 
 ### 2. Syntax-Highlighted Code Frame Snippets
 
 Extracts source code lines directly from Playwright test files and renders inline syntax highlighting with context lines surrounding the failed assertion line.
 
+<div align="center">
+
 ![Code Snippet](../../../assets/screenshots/code-snippet.png)
+
+</div>
 
 ### 3. Structured Diff Stack Trace (`Expected` vs. `Received`)
 
@@ -82,13 +90,21 @@ For Playwright `expect()` value assertion mismatches, Zen Reporter formats visua
 - 🟢 **Expected**: Expected object structure or baseline text.
 - 🔴 **Received**: Actual runtime output returned by the application under test.
 
+<div align="center">
+
 ![Stack Trace](../../../assets/screenshots/stack-trace.png)
+
+</div>
 
 ### 4. Retry Attempt Inspection Tabs (`Run`, `Retry #1`, `Retry #2`)
 
 When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Zen Reporter creates dedicated tab panels for each execution attempt. Users can inspect trace steps, console logs, and screenshots for both the initial failing attempt and subsequent retries, in a single place.
 
+<div align="center">
+
 ![Retry Attempts](../../../assets/screenshots/retry-attempts.png)
+
+</div>
 
 ### 5. Attachments & Artifact Integration
 
