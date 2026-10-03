@@ -6,19 +6,19 @@ import starlightImageZoom from 'starlight-image-zoom';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://apatelia.github.io',
-  base: '/zen-reporter-website',
+  site: 'https://zen-reporter.vercel.app',
+  base: '/',
   integrations: [
     mermaid(),
     starlight({
-      plugins: [ starlightImageZoom() ],
+      plugins: [starlightImageZoom()],
       title: 'Zen Reporter',
       favicon: '/favicon.png',
       logo: {
         src: './src/assets/logo.svg',
       },
-      customCss: [ './src/styles/custom.css' ],
-      social: [ { icon: 'github', label: 'GitHub', href: 'https://github.com/apatelia/zen-reporter' } ],
+      customCss: ['./src/styles/custom.css'],
+      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/apatelia/zen-reporter' }],
       sidebar: [
         {
           label: 'Start Here',
