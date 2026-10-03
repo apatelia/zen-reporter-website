@@ -42,6 +42,7 @@ export default defineConfig({
             { label: 'CSV Exporter', slug: 'features/csv-exporter' },
             { label: 'Executive Summary Report', slug: 'features/executive-summary' },
             { label: 'Zen Reporter CLI', slug: 'features/zr-cli' },
+            { label: 'Context Guide', slug: 'features/guide-modals' }
           ],
         },
       ],

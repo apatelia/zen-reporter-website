@@ -21,8 +21,7 @@ The **Sticky Header** (located at the top of the Zen Reporter dashboard) serves 
 #### 1. Project & Test Run Branding
 
 - **Project Name Title**: Large bold heading presenting the top-level test project name ([`projectName`](../configuration#2-projectname-string)). Defaults to `"Test Execution Report"` if not configured.
-- **Run Identifier Badge**: Styled pill badge displaying the custom test run name ([`testRunName`](../configuration#3-testrunname-string)), such as CI build numbers (`"Build #42"`), commit hashes, or release tags.
-- **Zen Reporter Badge**: Integrated Zen Reporter logo mark and brand attribution.
+- **Run Identifier Badge**: Styled pill badge displaying the custom test run name ([`testRunName`](../configuration#3-testrunname-string)), such as CI build numbers (`"Build #42"`).
 
 #### 2. Execution Time & Duration Summary
 
