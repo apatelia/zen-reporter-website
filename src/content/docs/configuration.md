@@ -23,7 +23,7 @@ export default defineConfig({
         projectName: 'My Application E2E',
         testRunName: 'Nightly Execution #{N}',
         theme: 'Cafe',
-        darkMode: false,
+        darkMode: 'system',
         singleSummaryFile: true,
         minimalReport: false,
         enableHistory: 'auto',
@@ -36,17 +36,17 @@ export default defineConfig({
 
 ### Complete Configuration Options Table
 
-| Option              | Type                                   | Default Value               | Description                                                                          |
-| :------------------ | :------------------------------------- | :-------------------------- | :----------------------------------------------------------------------------------- |
-| `outputDir`         | `string`                               | `"zen-report"`              | Output folder where HTML reports, JSON data, and historical archives are saved.      |
-| `projectName`       | `string`                               | `"Test Automation Project"` | Custom project header title displayed in the top bar of the dashboard.               |
-| `testRunName`       | `string`                               | `"Test Run #{N}"`           | Test run header title. Supports dynamic run numbering via `{N}` placeholder.         |
-| `theme`             | `'Cafe' \| 'Concept' \| 'Sentinel'`    | `"Cafe"`                    | Visual theme applied when the report is loaded in a browser.                         |
-| `darkMode`          | `boolean`                              | `false`                     | Initial dark mode state when opening the report.                                     |
-| `singleSummaryFile` | `boolean`                              | `false`                     | When set to `true`, generates a lightweight `summary.html` alongside `index.html`.   |
-| `minimalReport`     | `boolean`                              | `false`                     | Disables history and hides analytical tabs for ultra-lightweight single-run reports. |
-| `enableHistory`     | `'auto' \| boolean`                    | `"auto"`                    | History archiving control. Automatically disabled if `minimalReport` is enabled.     |
-| `consoleProgress`   | `'auto' \| 'line' \| 'dot' \| boolean` | `"auto"`                    | Terminal live progress logging mode during test execution.                           |
+| Option              | Type                                   | Default                     | Description                                                                                                                                 |
+| :------------------ | :------------------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| `outputDir`         | `string`                               | `"zen-report"`              | Directory where final report files are saved.                                                                                               |
+| `projectName`       | `string`                               | `"Test Automation Project"` | Project name displayed prominently in the top bar of the dashboard.                                                                         |
+| `testRunName`       | `string`                               | `"Test Run #{N}"`           | Test run or build name displayed in top bar. `{N}` is replaced dynamically by run number.                                                   |
+| `theme`             | `string`                               | `"Cafe"`                    | Theme applied on first load (`"Cafe"`, `"Concept"`, `"Sentinel"`).                                                                          |
+| `darkMode`          | `boolean \| 'system'`                  | `"system"`                  | Initial dark mode state (`true`, `false`, or `"system"` to automatically match OS theme setting).                                           |
+| `singleSummaryFile` | `boolean`                              | `false`                     | Generates a standalone `summary.html` for executive summary views.                                                                          |
+| `minimalReport`     | `boolean`                              | `false`                     | When `true`, disables history recording and hides analytical charts/secondary tabs (Projects, History, Trends, Insights) for a lean report. |
+| `enableHistory`     | `'auto' \| boolean`                    | `"auto"`                    | Controls history execution archiving (`"auto"`, `true`, `false`). Forced to `false` when `minimalReport` is `true`.                         |
+| `consoleProgress`   | `'auto' \| 'line' \| 'dot' \| boolean` | `"auto"`                    | Controls terminal execution output (`"auto"` selects `line` in TTY and `dot` in non-TTY).                                                   |
 
 ---
 
@@ -74,23 +74,23 @@ export default defineConfig({
 - **Details**: Formats the run name displayed in headers and in historical run data table.
 - **Dynamic Variable `{N}`**: Zen Reporter scans `<outputDir>/runs/*.jsonl` prior to execution to count past runs and automatically increments `{N}`. For example, if 4 previous JSONL files exist, `"Build #{N}"` evaluates to `"Build #5"`.
 
-### 4. `theme` (`'Cafe' | 'Concept' | 'Sentinel'`)
+### 4. `theme` (`string`)
 
 - **Default**: `"Cafe"`
-- **Details**: Controls the initial color theme palette applied to the UI dashboard:
+- **Details**: Controls the initial color theme palette applied to the UI dashboard (`"Cafe"`, `"Concept"`, `"Sentinel"`):
   - **`Cafe`**: Warm, approachable theme featuring a four-tier green brand system layered over a warm cream canvas - inspired by Starbucks' color palette.
   - **`Concept`**: Modern tech theme with vibrant indigo/slate UI surfaces - inspired by Notion's color pallette.
   - **`Sentinel`**: High-contrast cybersecurity theme utilizing deep purple-violet midnight canvas and crisp warning accents - inspired by Sentry's color pallette.
 
-### 5. `darkMode` (`boolean`)
+### 5. `darkMode` (`boolean | 'system'`)
 
-- **Default**: `false`
-- **Details**: Specifies whether the dashboard initializes in Dark Mode. When set to `true`, the dashboard applies dark background tokens instantly on first render. Users can still toggle dark mode using the header button.
+- **Default**: `"system"`
+- **Details**: Specifies the initial dark mode state when opening the report (`true`, `false`, or `"system"` to automatically match OS theme setting). Users can still toggle dark mode using the header button.
 
 ### 6. `singleSummaryFile` (`boolean`)
 
 - **Default**: `false`
-- **Details**: When set to `true`, Zen Reporter outputs a secondary `summary.html` file in your `outputDir`. `summary.html` is an executive dashboard containing only high-level KPI cards, pass rate rings, health charts, and suite summaries—omitting heavy failure step details, code frame snippets, and trace blobs. This is useful for distributing light status summaries to leadership.
+- **Details**: When set to `true`, Zen Reporter outputs a secondary `summary.html` file in your `outputDir`. `summary.html` is a copy of the "Overview" tab without the sidebar. It is an executive dashboard containing test results breakdown, test run info, pass/fail rate indicators, execution efficiency calculations, and test suite stability and flakiness metrics. This is useful for distributing light status summaries to leadership as a single file.
 
 ### 7. `minimalReport` (`boolean`)
 

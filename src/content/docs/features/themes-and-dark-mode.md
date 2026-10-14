@@ -54,8 +54,8 @@ export default defineConfig({
     [
       "@arpanp/zen-reporter",
       {
-        theme: "Concept", // 'Cafe' | 'Concept' | 'Sentinel' (default: 'Cafe')
-        darkMode: true, // Set to true to initialize dashboard in Dark Mode
+        theme: "Cafe", // 'Cafe' | 'Concept' | 'Sentinel' (default: 'Cafe')
+        darkMode: "system", // true | false | 'system' (default: 'system')
       },
     ],
   ],
@@ -64,15 +64,28 @@ export default defineConfig({
 
 ---
 
-## 🌓 Interactive UI Toggling
+## 🌓 Interactive UI Controls
 
-Regardless of the initial configuration set in `playwright.config.ts`, users viewing the report can toggle between light and dark modes or switch visual themes on the fly:
-
-- **Dark Mode Button**: Located in the top navigation header bar to switch between Light Mode and Dark Mode instantly.
-- **Theme Selector Dropdown**: Switch between `Cafe`, `Concept`, and `Sentinel` themes dynamically without reloading the report.
+Regardless of the initial configuration set in `playwright.config.ts`, users viewing the report can switch visual themes or adjust appearance modes on the fly using the controls in the top header:
 
 <div align="center">
 
 ![UI Toggle](../../../assets/screenshots/ui-toggle.png)
 
 </div>
+
+### 1. Segmented Theme Picker
+
+A segmented pill control located in the top header allows instant switching between themes without reloading the page:
+
+- **`Cafe`**: Selected with a dark green dot indicator.
+- **`Concept`**: Selected with an electric blue dot indicator.
+- **`Sentinel`**: Selected with a deep purple dot indicator.
+
+### 2. Three-Way Appearance Mode Toggle
+
+An intuitive segmented control allowing one-click selection of your preferred display mode:
+
+- 🖥️ **System**: Automatically syncs the report's appearance with your operating system's or web browser's light or dark mode setting.
+- ☀️ **Light Mode**: Forces the light background and palette.
+- 🌙 **Dark Mode**: Forces the dark background and dark/midnight palette.

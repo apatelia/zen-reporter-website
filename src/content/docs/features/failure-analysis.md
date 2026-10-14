@@ -15,6 +15,18 @@ At the top of the **Failures** tab, users can toggle between two intelligent fai
   [ Group by File ]   vs.   [ Cluster by Error Signature (Shared Issues) ]
 ```
 
+<div align="center">
+
+![Failure Groups](../../../assets/screenshots/failure-groupings.png)
+
+</div>
+
+<div align="center">
+
+![Failure Grouped by Errors](../../../assets/screenshots/failure-grouping-by-error.png)
+
+</div>
+
 ### 1. Group by File
 
 Organizes test failures by their parent spec file path. Ideal when debugging a broken spec file locally.
@@ -30,32 +42,7 @@ Analyzes stack trace messages and error locations across all failed tests to clu
 
 ## 🛠️ Granular Failure Inspection Tools
 
-Clicking on any failed test case opens the comprehensive diagnostic details:
-
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│ 🔴 test("User checkout completes") - Attempt #2 (Failed)               │
-├────────────────────────────────────────────────────────────────────────┤
-│ [ Run 1 (Failed) ]  [ Run 2 - Retry #1 (Failed) ]                      │
-├────────────────────────────────────────────────────────────────────────┤
-│ Step-by-Step Execution Trace                                           │
-│   ✅ 1. Navigate to /cart (230ms)                                      │
-│   ✅ 2. Fill credit card details (450ms)                               │
-│ ▶ 🔴 3. Click #checkout-btn (5000ms - FAILED)                          │
-├────────────────────────────────────────────────────────────────────────┤
-│ Error Stack Trace & Syntax Highlighted Code Frame                      │
-│   > 42 | await page.locator('#checkout-btn').click();                  │
-│     43 | await expect(page.locator('.success')).toBeVisible();         │
-│          ^ Error: Timed out 5000ms waiting for expect(locator)...      │
-├────────────────────────────────────────────────────────────────────────┤
-│ Diff Stack Trace Comparison                                            │
-│   Expected: "Order Confirmed"                                          │
-│   Received: "Payment Processing Error"                                 │
-├────────────────────────────────────────────────────────────────────────┤
-│ Attachments & Logs                                                     │
-│   [ 📷 trace-screenshot.png ]  [ 🎥 video.webm ]  [ 📄 trace.zip ]     │
-└────────────────────────────────────────────────────────────────────────┘
-```
+Clicking on any failed or retried test case expands a rich diagnostic view containing execution steps, failure messages, code frames, and artifacts:
 
 ![Failure Diagnostics Details](../../../assets/screenshots/failure-diagnostics.png)
 
@@ -63,9 +50,12 @@ Clicking on any failed test case opens the comprehensive diagnostic details:
 
 ## 🔍 Key Diagnostic Capabilities
 
-### 1. Target Step Indicator (`▶`)
+### 1. Step-by-Step Execution Steps & Target Step Indicator (`▶`)
 
-In the step-by-step execution trace, Zen Reporter pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`). No more scrolling through numerous passed steps to find the assertion failure.
+The **Execution Steps** section provides a collapsible list of all hooks and test steps (e.g., `Before Hooks`, test steps, `After Hooks`, `Worker Cleanup`) with step runtimes:
+
+- Pinpoints the exact line where Playwright execution aborted with a prominent target arrow indicator (`▶`).
+- Displays step duration (e.g., `5ms`, `2ms`, `10ms`) for every hook and action.
 
 <div align="center">
 
@@ -75,7 +65,7 @@ In the step-by-step execution trace, Zen Reporter pinpoints the exact line where
 
 ### 2. Syntax-Highlighted Code Frame Snippets
 
-Extracts source code lines directly from Playwright test files and renders inline syntax highlighting with context lines surrounding the failed assertion line.
+Extracts source code lines directly from Playwright test files and renders inline syntax highlighting with context lines surrounding the failed assertion line, highlighting the specific failed line and character pointer (`^`).
 
 <div align="center">
 
@@ -83,12 +73,21 @@ Extracts source code lines directly from Playwright test files and renders inlin
 
 </div>
 
-### 3. Structured Diff Stack Trace (`Expected` vs. `Received`)
+### 3. Error Callout & One-Click "Copy Trace" Button
+
+The **Test Failures** card highlights the root error message in an alert banner:
+
+- **Copy Trace Button**: A dedicated **Copy Trace** button located in the error header allows engineers to instantly copy the entire raw stack trace and assertion failure message to the clipboard with a single click—making it effortless to paste into Jira tickets, Slack discussions, or terminal debug sessions.
+
+![Error Callout](../../../assets/screenshots/error-callout.png)
+
+### 4. Structured Diff & Stack Trace (`Expected` vs. `Received`)
 
 For Playwright `expect()` value assertion mismatches, Zen Reporter formats visual color-coded text diffs highlighting exact string or JSON object discrepancies:
 
-- 🟢 **Expected**: Expected object structure or baseline text.
-- 🔴 **Received**: Actual runtime output returned by the application under test.
+- 🟢 **Expected**: Expected object structure or baseline text (e.g., `Expected: false`).
+- 🔴 **Received**: Actual runtime output returned by the application under test (e.g., `Received: true`).
+- **Stack Trace Location**: Displays the precise file path and line number where the assertion failed.
 
 <div align="center">
 
@@ -96,9 +95,9 @@ For Playwright `expect()` value assertion mismatches, Zen Reporter formats visua
 
 </div>
 
-### 4. Retry Attempt Inspection Tabs (`Run`, `Retry #1`, `Retry #2`)
+### 5. Retry Attempt Inspection Tabs (`Run`, `Retry #1`, `Retry #2`)
 
-When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Zen Reporter creates dedicated tab panels for each execution attempt. Users can inspect trace steps, console logs, and screenshots for both the initial failing attempt and subsequent retries, in a single place.
+When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Zen Reporter creates dedicated tab panels for each execution attempt (e.g., `● Run (Failed · 18ms)` and `● Retry #1 (Passed · 10ms)`). Users can inspect trace steps, console logs, and failure details for both the initial failing attempt and subsequent retries in a single place.
 
 <div align="center">
 
@@ -106,15 +105,13 @@ When Playwright retries flaky tests (`retries: 2` in `playwright.config.ts`), Ze
 
 </div>
 
-### 5. Attachments & Artifact Integration
+### 6. Attachments & Artifact Integration
 
 Direct access to Playwright test artifacts:
 
-- **Text Artifacts**: Inline previews for text file artifacts.
+- **Text Artifacts**: Inline previews for text file artifacts (e.g., `error-context`).
 - **Screenshots**: Inline image previews for failure snapshots.
 - **Videos**: Built-in video player for test execution recordings (`video: 'retain-on-failure'`).
-- **Trace Viewer Downloads**: One-click direct link to Playwright trace files (`trace: 'retain-on-failure'`).
+- **Binary Artifacts**: Fallback preview that allow downloading of binary attachments.
 
 ![Attachments](../../../assets/screenshots/attachment.png)
-![Screenshot Preview](../../../assets/screenshots/screenshot-preview.png)
-![Video Preview](../../../assets/screenshots/video-preview.png)

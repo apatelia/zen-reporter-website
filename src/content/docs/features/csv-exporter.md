@@ -38,9 +38,21 @@ To prevent character encoding errors when opening CSV files in Microsoft Excel o
 
 The CSV exporter operates dynamically on the user's active view context:
 
-- **Search Filters**: Only rows matching your search filter (e.g., `@smoke` or `auth/login.spec.ts`) are exported.
-- **Date Range Filters**: Honored in historical views.
-- **Project Dropdowns**: Respects active project selections.
+- **Search Filters**: Only rows matching your current search query (e.g., search term or spec file name) are exported.
+- **Date Range Filters**: Presets and custom date ranges selected in historical views are strictly respected.
+- **Project Dropdowns**: Respects active project and browser selections.
+
+#### Dynamic File Naming
+
+Exported filenames are generated dynamically to describe the exact dataset, active filter state, search query, and export timestamp:
+
+| Filter Scenario | Example Generated Filename |
+| :--- | :--- |
+| **Preset Date Filter** | `flaky-tests_last-30-days_2026-10-05_1430.csv` |
+| **Single Month Range** | `flaky-tests_october-2026_2026-10-05_0915.csv` |
+| **Custom Multi-Month Range** | `flaky-tests_2026-08-01-to-2026-10-05_2026-10-05_1845.csv` |
+| **Combined Search & Preset** | `test-runs-history_last-30-days_search-login_2026-10-05_1105.csv` |
+| **No Active Filter** | `slowest-tests_2026-10-05_1430.csv` |
 
 ### 4. Full Un-paginated Dataset Extraction
 
@@ -50,8 +62,8 @@ Unlike simple DOM table scraping utilities, Zen Reporter's CSV engine exports th
 
 ## 📑 Supported Export Tables
 
-- **Spec Files Table [Files tab]**: Spec file path, total tests, pass count, fail count, timed-out count, skipped count, pass rate %, total duration.
-- **Historical Runs Table [History tab]**: Run ID, run name, start timestamp, wall-clock duration, total tests, pass rate %, quality rating.
-- **File History Table [History tab]**: File path, run date, total tests, pass count, failure breakdown.
-- **Test Case History Table [History tab]**: Test title, describe hierarchy, spec file, project, total runs, pass rate, average duration.
-- **Insights & Intelligence Tables [Insights tab]**: Flaky test lists, regression lists, and top slowest test cases.
+- **Test Results by File Table [Files tab]**: Spec file path, total tests, passed, failed, timed out, interrupted, skipped, and pass rate %.
+- **Execution Runs History Table [History tab]**: Run name, execution mode/workers, start timestamp, wall-clock duration, time saved via parallelism, status counts (passed, failed, skipped, timed out, interrupted), and pass rate %.
+- **File Execution History Table [History tab]**: Spec file path, total runs, total test executions, outcome counts, and historical pass rate %.
+- **Test Case History Table [History tab]**: Test case title, describe suite, spec file path, project profile, total runs, outcome counts, average duration, and historical pass rate %.
+- **Insights & Intelligence Tables [Insights tab]**: Flaky tests list, regression list, and top slowest test cases.

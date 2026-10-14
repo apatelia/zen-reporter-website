@@ -41,40 +41,31 @@ export default defineConfig({
 
 ## 🔍 Visual Components & Features
 
-`summary.html` includes only high-level dashboard cards without failure stack traces:
-
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                                    Dashboard Overview                                    │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                 Run Metadata Info Cards                                  │
-│         Run Duration, Total Projects, Total Suites, Total Tests, Worker Threads          │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                     Quick KPI Stats                                      │
-│                        (Total, Pass, Fail, Skipped, Interrupted)                         │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                     Quick KPI Stats                                      │
-│ (Avg. Duration, Slowest Test Duration, Fastest Test Duration, Total Tags, Failure Rate)  │
-├──────────────────────┬───────────────────────────────┬───────────────────────────────────┤
-│    Pass Rate Ring    │   Execution Efficiency Card   │       Test Health Breakdown       │
-│      (Radial %)      │      Wall-Clock Duration      │    (Passed, Failed, TimedOut,     │
-│                      │              vs.              │     Skipped, Interrupted bar)     │
-│                      │     Cumulative Sequential     │                                   │
-│                      │        Worker Duration        │                                   │
-└──────────────────────┴───────────────────────────────┴───────────────────────────────────┘
-```
+`summary.html` provides the complete high-level dashboard layout in a standalone, single-page presentation without navigation sidebars, failure stack traces, or large media attachments:
 
 ![Summary HTML](../../../assets/screenshots/summary-html.png)
 
-<div align="center">
-summary.html
-</div>
+<a href="/demo/summary.html" target="_blank" rel="noopener
+  noreferrer">Summary - Live Demo</a>
+
+### Key Dashboard Sections in `summary.html`
+
+- **Persistent Header Bar**: Displays the project name, test run identifier (e.g., `Unit Tests Run #146`), start and end timestamps, wall-clock duration pill (`⏱ 31s`), segmented theme picker (`Cafe`, `Concept`, `Sentinel`), and 3-way appearance toggle (System, Light, Dark).
+- **Overall Pass Rate Gauge**: Prominent radial donut chart indicating the suite's pass rate (e.g., `77% PASS RATE`) along with health threshold tiers (🟢 Excellent $\ge 90\%$, 🟡 Needs Improvement $60\% - 89\%$, 🔴 Critical $< 60\%$).
+- **Test Run Info**: Inline summary metrics detailing test run Duration, Project count, Suite count, Test count, and parallel Worker thread allocation.
+- **Test Results & Breakdown**: Proportional outcome stacked progress bar (with overall failure rate badge) and dedicated outcome status cards for `PASSED`, `FAILED`, `TIMED OUT`, `INTERRUPTED`, and `SKIPPED` cases.
+- **Performance & Stability Analytics**:
+  - **Execution Efficiency & Timing**: Highlights speedup multiplier (e.g., `2.5x speedup`), time saved via parallel worker execution (`45s TIME SAVED VIA PARALLELISM`), comparative progress bars (*Sequential Effort* vs. *Actual Wall-Clock*), and test timing benchmarks (*Avg Duration*, *Slowest Test*, *Fastest Test*).
+  - **Test Stability & Flakiness**: Tracks flakiness recovery rate (e.g., `3% FLAKINESS RATE (2/66 EXECUTED TESTS RECOVERED)`), anomaly counter badge, and category breakdown (*Direct Passes*, *Flaky / Recovered*, *Unresolved Failures*, *Skipped*).
+
+---
 
 ### Key Differences (`summary.html` vs `index.html`)
 
-| Feature                    | `index.html` (Full Report)                                                         | `summary.html` (Executive Summary) |
-| :------------------------- | :--------------------------------------------------------------------------------- | :--------------------------------- |
-| **Interactive Navigation** | Full tabs (Overview, Suites, Files, Failures, Projects, History, Trends, Insights) | Single-page high-level dashboard   |
-| **Failure Diagnostics**    | Full trace step timeline (`▶`), source code frames, diff traces                    | High-level failure counts only     |
-| **Attachments & Traces**   | Embedded screenshots, videos, trace files                                          | Excluded for minimal file size     |
-| **File Size**              | Larger (includes full execution details & assets)                                  | Extremely small & lightweight      |
+| Feature | `index.html` (Full Interactive Report) | `summary.html` (Executive Summary) |
+| :--- | :--- | :--- |
+| **Sidebar Navigation** | Full collapsible sidebar (Overview, Projects, Suites, Files, Failures, History, Insights, Trends) | **No sidebar** — single clean executive view |
+| **Deep-Dive Failure Traces** | Full step-by-step traces (`▶`), syntax-highlighted code frames, text diffs, clipboard copy | High-level status breakdown & failure counts only |
+| **Media Attachments** | Inline screenshots, interactive video player, and Playwright `.zip` traces | Excluded to ensure ultra-fast loading & small file size |
+| **Historical & AI Analytics** | Full DuckDB regression tracking, file/test histories, and trend charts | Focused on the current execution run summary |
+| **File Size & Portability** | Larger (comprehensive test artifacts and deep diagnostic logs) | Extremely lightweight single-file HTML ideal for email, Slack, or CI release artifacts |

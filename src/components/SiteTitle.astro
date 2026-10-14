@@ -1,0 +1,101 @@
+---
+import { logos } from "virtual:starlight/user-images";
+import config from "virtual:starlight/user-config";
+
+import { getLatestVersion } from "../utils/npmVersion";
+
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+
+const version = await getLatestVersion();
+---
+
+<div class="site-title-wrapper sl-flex">
+  <a href={siteTitleHref} class="site-title sl-flex">
+    {
+      config.logo && logos.dark && (
+        <>
+          <img
+            class:list={{
+              "light:sl-hidden print:hidden": !("src" in config.logo),
+            }}
+            alt={config.logo.alt}
+            src={logos.dark.src}
+            width={logos.dark.width}
+            height={logos.dark.height}
+          />
+          {!("src" in config.logo) && (
+            <img
+              class="dark:sl-hidden print:block"
+              alt={config.logo.alt}
+              src={logos.light?.src}
+              width={logos.light?.width}
+              height={logos.light?.height}
+            />
+          )}
+        </>
+      )
+    }
+    <span class:list={{ "sr-only": config.logo?.replacesTitle }} translate="no">
+      {siteTitle}
+    </span>
+  </a>
+  <a
+    href="https://www.npmjs.com/package/@arpanp/zen-reporter"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="version-badge"
+    title="View latest @arpanp/zen-reporter on npm"
+  >
+    {version}
+  </a>
+</div>
+
+<style>
+  @layer starlight.core {
+    .site-title-wrapper {
+      align-items: center;
+      gap: 0.65rem;
+      min-width: 0;
+    }
+    .site-title {
+      align-items: center;
+      gap: var(--sl-nav-gap);
+      font-size: var(--sl-text-h4);
+      font-weight: 600;
+      color: var(--sl-color-text-accent);
+      text-decoration: none;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    span {
+      overflow: hidden;
+    }
+    img {
+      height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: 0 50%;
+    }
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      line-height: 1;
+      border-radius: 9999px;
+      color: var(--sl-color-text);
+      background-color: var(--sl-color-gray-5);
+      border: 1px solid var(--sl-color-gray-4);
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .version-badge:hover {
+      background-color: var(--sl-color-gray-4);
+      border-color: var(--sl-color-text-accent);
+      color: var(--sl-color-text-accent);
+    }
+  }
+</style>

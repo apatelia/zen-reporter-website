@@ -9,32 +9,6 @@ Modern Playwright test suites frequently execute the same test files across mult
 
 ---
 
-## 📊 Projects Tab Overview
-
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                         Per-Project Analytics                          │
-├────────────────────────────────────────────────────────────────────────┤
-│                       Project Breakdown Summary                        │
-│         Total Projects, Most Stable Project, Slowest Project,          │
-│              Pass Rate Parity Variance, Total Flaky Tests              │
-├────────────────────────────────────────────────────────────────────────┤
-│                        Status Distribution Chart                       │
-│         Stacked / Grouped Bar Charts of Passed/Failed/Skipped/         │
-│                   Interrupted/Timed out per Project                    │
-├────────────────────────────────────────────────────────────────────────┤
-│                  Volume & Coverage Distribution Chart                  │
-│           Comparison of Test Counts and Wall-Clock Durations           │
-│                          per Project Profile                           │
-├────────────────────────────────────────────────────────────────────────┤
-│                          Project Detail Cards                          │
-│              Detailed Breakdown Cards per Project Profile              │
-│                       with Pass Rate & Duration                        │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
 ## 🔍 Key Analytics & Visualizations
 
 ### 1. Project Summary Cards
@@ -45,7 +19,7 @@ High-level summary metrics at the top of the Projects view:
 - **Most Stable Project**: Identifies the project target achieving the highest pass rate percentage.
 - **Slowest Project**: Highlights the project profile taking the longest cumulative execution time.
 - **Parity Variance**: Measures the pass rate gap percentage across targets to spot cross-browser or cross-environment instability.
-- **Total Flaky Tests**: Tracks the total number of test cases across project targets that required retries to pass.
+- **Flaky Tests**: Tracks the total number of test cases across project targets that required retries to pass.
 
 ### 2. Status Distribution Chart
 

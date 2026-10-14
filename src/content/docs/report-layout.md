@@ -18,35 +18,24 @@ The **Sticky Header** (located at the top of the Zen Reporter dashboard) serves 
 
 ### 🔍 Header Elements & Key Controls
 
-#### 1. Project & Test Run Branding
+#### 1. Project & Test Run Branding (Left Side)
 
-- **Project Name Title**: Large bold heading presenting the top-level test project name ([`projectName`](../configuration#2-projectname-string)). Defaults to `"Test Execution Report"` if not configured.
-- **Run Identifier Badge**: Styled pill badge displaying the custom test run name ([`testRunName`](../configuration#3-testrunname-string)), such as CI build numbers (`"Build #42"`).
+- **Project Name Title**: Bold heading presenting the test project name ([`projectName`](../configuration#2-projectname-string)), e.g., `"Zen Reporter"`.
+- **Run Identifier & Date Metadata**: Below the project title, key run context is displayed inline:
+  - **Run Name**: Custom test run identifier ([`testRunName`](../configuration#3-testrunname-string)), e.g., `Unit Tests Run #145`.
+  - **Execution Timestamps**: Calendar icon accompanied by the run date, start and end timestamps, and timezone (e.g., `Oct 8, 2026 • 01:08:05 AM – 01:08:36 AM GMT+5:30`).
+  - **Wall-Clock Duration Pill**: Green clock-pill badge highlighting total elapsed execution duration (e.g., `⏱ 31s`).
 
-#### 2. Execution Time & Duration Summary
+#### 2. Theme Selector & Appearance Controls (Right Side)
 
-Located below the project title, the header provides instant timing metrics for the run:
-
-- **Date & Time Range**: Displays the start and end timestamp of the test execution.
-- **Wall-Clock Duration Pill**: Highlighting total real-world execution duration calculated as:
-
-  > **Wall-Clock Duration** = `End Time - Start Time`
-
-  Formatted concisely as hours, minutes, and seconds (e.g., `12m 45s`).
-
-#### 3. Interactive Theme Selector Dropdown
-
-Enables instant, real-time switching of the report's visual design palette without reloading the page or losing current tab state:
-
-- **`Cafe`** _(Default)_: Warm beige and espresso palette designed for low eye strain.
-- **`Concept`**: Minimalist slate and indigo palette tailored for modern software interfaces.
-- **`Sentinel`**: High-contrast navy and warning-color scheme, specifically engineered for maximum visibility.
-
-#### 4. One-Click Light / Dark Mode Toggle
-
-A responsive icon button allowing users to switch between Light Mode and Dark Mode dynamically:
-
-- **Sun / Moon Indicators**: Displays a sun icon when in Dark Mode (switching to Light) and a moon icon when in Light Mode (switching to Dark).
+- **Segmented Theme Picker**: A segmented pill bar allowing one-click switching between Zen Reporter's color themes:
+  - **`Cafe`**: Green dot indicator; warm, approachable theme inspired by Starbucks' palette.
+  - **`Concept`**: Blue dot indicator; vibrant modern tech palette inspired by Notion.
+  - **`Sentinel`**: Violet/purple dot indicator; high-contrast cybersecurity palette inspired by Sentry.
+- **Three-Way Appearance / Color Mode Toggle**: An intuitive three-state segmented control for display modes:
+  - 🖥️ **System**: Automatically matches system OS theme preference.
+  - ☀️ **Light Mode**: Forces light color palette.
+  - 🌙 **Dark Mode**: Forces dark midnight color palette.
 
 ---
 
@@ -63,9 +52,9 @@ export default defineConfig({
       "@arpanp/zen-reporter",
       {
         projectName: "E2E Web Suite", // Displayed as main header title
-        testRunName: "Release v2.4.0", // Displayed in accent badge
-        theme: "Concept", // 'Cafe' | 'Concept' | 'Sentinel'
-        darkMode: true, // Set initial mode preference
+        testRunName: "Release v2.4.0", // Displayed in test run metadata
+        theme: "Cafe", // 'Cafe' | 'Concept' | 'Sentinel'
+        darkMode: "system", // true | false | 'system'
       },
     ],
   ],
@@ -76,15 +65,17 @@ export default defineConfig({
 
 ### 💡 Key Benefits of the Sticky Header
 
-1. **Persistent Execution Context**: When analyzing long failure stack traces or scrolling through hundreds of test specs, engineers never lose context of which project build or timestamp they are inspecting.
-2. **Instant Visual Customization**: Switch between Dark Mode or change visual themes immediately from any tab or scroll position.
-3. **Zero-Scroll Context Switching**: Quick diagnostic confirmation of total run duration and completion timestamp available at a glance.
+1. **Persistent Build & Run Context**: Crucial run metadata—including project name, build/run ID, execution timestamps, and total elapsed duration—remains pinned in view, so you never lose context when deeply nested in long stack traces or extensive test file trees.
+2. **Global Appearance & Theme Controls**: Switch instantly between color themes (`Cafe`, `Concept`, `Sentinel`) or toggle display modes (System, Light, Dark) from anywhere on the page without reloading or losing your active view and filter state.
+3. **Glanceable Status & Benchmark Reference**: Having total duration and run timing permanently visible provides an effortless performance reference when analyzing individual test durations or suite runtimes.
 
 ---
 
 ## Part 2: Left Sidebar Navigation & Workspace Control
 
 The **Left Sidebar** serves as the primary navigation control center for Zen Reporter dashboards. Pinned to the left side of the screen, it allows QA engineers, developers, and managers to seamlessly toggle between high-level executive metrics, detailed test suite hierarchies, root cause failure traces, and historical analytics.
+
+At the top of the sidebar, the **Zen Reporter brand header** includes the application icon, version tag (e.g., `v0.14.1`), an external documentation link (`↗`), and a collapse toggle button (`<` / `>`).
 
 ---
 
@@ -107,7 +98,7 @@ The sidebar operates in two interactive width modes with smooth transitions:
 
 ### 🧭 Navigation Tabs Overview
 
-The sidebar provides access to **8 core views** of your test execution setup:
+The sidebar provides access to **8 core views** of your test execution setup in the following order:
 
 | Tab Icon & Name | View Description                      | Key Functionality                                                                                                                       |
 | :-------------- | :------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------- |
@@ -115,10 +106,10 @@ The sidebar provides access to **8 core views** of your test execution setup:
 | **`Projects`**  | Per-Project Multi-Browser Analytics   | Pass rate breakdown across Playwright project configurations (`chromium`, `firefox`, `mobile`), and test volume & coverage per project. |
 | **`Suites`**    | Interactive Suite & Spec Explorer     | Expandable `describe` tree structure, full-text search, spec file result summaries, and retry badges.                                   |
 | **`Files`**     | Spec File Metrics & Stability         | Spec file health matrix, test counts, execution duration, and stability ratings.                                                        |
-| **`Failures`**  | Deep-Dive Root Cause Failure Analysis | Error signatures, step trace highlights (`▶`), code frame snippets, and expected vs. received diffs.                                    |
+| **`Failures`**  | Deep-Dive Root Cause Failure Analysis | Error signatures, step trace highlights (`▶`), code frame snippets, and expected vs. received diffs with red anomaly count badge.      |
 | **`History`**   | Execution Run Archive Log             | Historical execution log, run-over-run quality ratings (`Excellent`, `Critical`), and wall-clock trends.                                |
-| **`Trends`**    | Long-Term Execution Metrics           | Pass rate stability trends, wall-clock trajectory across projects, and test step categories composition.                       |
 | **`Insights`**  | DuckDB Embedded Intelligence          | Flaky test detection, regression analysis, top slowest test cases, and P95 latency thresholds.                                          |
+| **`Trends`**    | Long-Term Execution Metrics           | Pass rate stability trends, wall-clock trajectory across projects, and test step categories composition.                                 |
 
 ---
 
@@ -168,7 +159,7 @@ When generating lightweight static reports (`minimalReport: true`), Zen Reporter
 
 #### 2. Executive Summary Mode (`summary.html`)
 
-When rendering the standalone executive summary view (`summary.html` or `?view=summary`), the sidebar is **completely suppressed** to present a zero-distraction summary interface.
+When rendering the standalone executive summary view (`summary.html`), the sidebar is **completely suppressed** to present a zero-distraction summary interface.
 
 ---
 

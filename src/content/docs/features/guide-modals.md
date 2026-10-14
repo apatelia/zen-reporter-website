@@ -11,20 +11,7 @@ Zen Reporter provides contextual **Guide Modals** across major analytics section
 
 Guide Modals bridge raw test automation metrics with actionable engineering insights. Each major reporting tab features dedicated **"Learn more"** triggers that open centered, accessible overlay dialogs.
 
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Interactive Guide Modal                         │
-├────────────────────────────────────────────────────────────────────────┤
-│ Title: Historical Test Runs Guide                                      │
-│ Subtitle: Executive Overview & Methodology                             │
-├────────────────────────────────────────────────────────────────────────┤
-│ • Key Metrics & Formulas (Pass Rate, Sequential Duration, Speedup)     │
-│ • Health Categories (Excellent ≥ 90%, Needs Improvement 60-89%, etc.)  │
-│ • Recommended Remediation Guidelines & Operational Thresholds          │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                         [ Close Guide ]│
-└────────────────────────────────────────────────────────────────────────┘
-```
+![Context Guide](../../../assets/screenshots/guide-modal.png)
 
 ---
 

@@ -8,97 +8,86 @@ The **High-Level Dashboard** (accessible via the **Overview** tab) serves as the
 
 ---
 
-## 📊 Overview Tab Components
+## 🔍 Key Dashboard Sections & Metrics
 
-```text
-┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                                    Dashboard Overview                                    │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                 Run Metadata Info Cards                                  │
-│         Run Duration, Total Projects, Total Suites, Total Tests, Worker Threads          │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                     Quick KPI Stats                                      │
-│                        (Total, Pass, Fail, Skipped, Interrupted)                         │
-├──────────────────────────────────────────────────────────────────────────────────────────┤
-│                                     Quick KPI Stats                                      │
-│ (Avg. Duration, Slowest Test Duration, Fastest Test Duration, Total Tags, Failure Rate)  │
-├──────────────────────┬───────────────────────────────┬───────────────────────────────────┤
-│    Pass Rate Ring    │   Execution Efficiency Card   │       Test Health Breakdown       │
-│      (Radial %)      │      Wall-Clock Duration      │    (Passed, Failed, TimedOut,     │
-│                      │              vs.              │     Skipped, Interrupted bar)     │
-│                      │     Cumulative Sequential     │                                   │
-│                      │        Worker Duration        │                                   │
-└──────────────────────┴───────────────────────────────┴───────────────────────────────────┘
-```
+### 1. Header & Navigation Context
+
+The top bar and run header display key execution context:
+
+- **Test Run Title & Run Number**: Indicates the test run suite and execution ID (e.g., `Unit Tests Run #145`).
+- **Timestamp & Duration Pill**: Shows execution date, start/end timestamps with timezone, and total execution duration (e.g., `31s`).
+- **Theme & Mode Selectors**: Quick switches for dashboard themes and light/dark mode selection.
 
 ---
 
-## 🔍 Key Dashboard Features & Metrics
+### 2. High-Level Execution Summary
 
-### 1. Run Information Cards
+The top section provides an immediate health check and high-level breakdown of the run:
 
-Provides environment context for compliance and audit logs:
+#### Overall Pass Rate
 
-- **Execution Duration**: Actual wall-clock duration taken for the latest test run.
-- **Projects/Browsers**: Total number of project/browser profiles configured for the project.
-- **Suits/Files**: Total number of spec files or `describe` suites in the project.
-- **Test Cases**: Total number of test cases evaluated across all Playwright project configurations.
-- **Worker Thread Count**: Number of Playwright worker threads utilized during execution.
+- **Radial Pass Rate Gauge**: Prominent circular donut chart displaying the suite's overall pass rate percentage (e.g., `83% PASS RATE`).
+- **Health Tier Thresholds / Legend**:
+  - 🟢 **Excellent (≥ 90%)**: High suite stability.
+  - 🟡 **Needs Improvement (60% – 89%)**: Moderate failure rates requiring attention.
+  - 🔴 **Critical (< 60%)**: Severe failure state requiring immediate triage.
 
-### 2. Quick KPI Stat Counters
+#### Test Run Info
 
-A horizontal bar of cards summarizing execution numbers and timing benchmarks:
+A concise summary card displaying key environment and scope metrics:
 
-- **Passed**: Count of successfully verified test cases.
-- **Failed**: Count of test cases failing Playwright assertions or throwing unhandled execution exceptions.
-- **Timed Out**: Count of test cases exceeding configured execution timeouts (`test.setTimeout()`).
-- **Interrupted**: Count of test cases abruptly terminated due to process crashes, worker terminations, or SIGKILL/SIGINT signals.
-- **Skipped**: Count of conditionally bypassed or explicitly skipped test cases (`test.skip()`).
-- **Avg Duration**: Average execution duration across all test cases (e.g., `655ms`).
-- **Slowest Test**: Duration of the single slowest test case in the execution run (e.g., `30s`).
-- **Fastest Test**: Duration of the fastest completed test case (e.g., `1ms`).
-- **Total Tags**: Total count of unique `@tag` identifiers used across test titles and suites (e.g., `12`).
-- **Failure Rate**: Percentage proportion of failed test cases relative to total evaluated tests (e.g., `17%`).
+- **Duration**: Total wall-clock time (e.g., `31s`).
+- **Projects**: Total number of configured projects/browsers (e.g., `2`).
+- **Suites**: Total number of suites/spec files (e.g., `12`).
+- **Tests**: Total test cases evaluated (e.g., `70`).
+- **Workers**: Number of parallel worker threads allocated (e.g., `10 Workers`).
 
-### 3. Radial Pass Rate Ring
+#### Test Results & Breakdown
 
-- **Visual Design**: Large circular radial progress indicator with dynamic WCAG color coding:
-  - 🟢 **Green (>= 90%)**: High suite stability.
-  - 🟡 **Yellow (70% - 89%)**: Moderate failure rates requiring attention.
-  - 🔴 **Red (< 70%)**: Critical execution failure state.
-- **Center Metric**: Large bold percentage value indicating the exact pass rate calculated as:
+- **Distribution Stacked Progress Bar**: A horizontal proportional bar representing the distribution across all execution outcomes, accompanied by a summary badge (e.g., `Failure Rate: 12% • 8 failures`).
+- **Outcome Status Cards**: Distinct status cards with counts, percentage shares, and status icons:
+  - 🟢 **PASSED**: Count and percentage of successful tests (e.g., `58` | `83%`).
+  - 🔴 **FAILED**: Count and percentage of assertion or runtime failures (e.g., `4` | `6%`).
+  - 🟣 **TIMED OUT**: Count and percentage of tests exceeding timeouts (e.g., `2` | `3%`).
+  - 🟠 **INTERRUPTED**: Count and percentage of abruptly terminated or aborted tests (e.g., `2` | `3%`).
+  - 🟡 **SKIPPED**: Count and percentage of intentionally skipped test cases (e.g., `4` | `5%`).
 
-  > **Pass Rate (%)** = `(Passed Test Cases / (Total Test Cases - Skipped Test Cases)) × 100`
+---
 
-### 4. Execution Efficiency Card
+### 3. Performance & Stability Analytics
 
-Measures test execution speedup gained through Playwright parallel worker threads:
+A dedicated analytics section divided into two main panels:
 
-- **Wall-Clock Duration**: Total real time elapsed from test run start to final completion.
-- **Total Sequential Duration**: Cumulative sum of individual test execution times if run sequentially on a single thread.
-- **Efficiency Speedup Multiplier**: Calculated as:
+#### Execution Efficiency & Timing
 
-  > **Speedup Factor** = `Total Sequential Duration / Wall-Clock Duration`
+Measures parallel execution performance and timing metrics:
 
-- **Worker Utilization Insight**: Demonstrates how effectively parallel worker threads reduced CI build duration.
+- **Header Badges**: Includes tooltip information and a speedup factor pill (e.g., `2.2x speedup`).
+- **Time Saved Via Parallelism**: Highlights the net time saved by running tests concurrently across workers (e.g., `37s TIME SAVED VIA PARALLELISM`).
+- **Sequential Effort vs. Actual Wall-Clock**: Comparative progress bars illustrating:
+  - **Sequential Effort**: Cumulative execution duration if run sequentially (e.g., `1m 9s`).
+  - **Actual Wall-Clock**: Total real time elapsed (e.g., `31s`).
+- **Timing Benchmarks**:
+  - **AVG DURATION**: Average test duration across all tests (e.g., `475ms`).
+  - **SLOWEST TEST**: Duration of the slowest test case in the run (e.g., `30s`).
+  - **FASTEST TEST**: Duration of the fastest test case (e.g., `1ms`).
 
-### 5. Test Stability & Flakiness Card
+#### Test Stability & Flakiness
 
-Provides a retry behavior and stability breakdown across executed tests:
+Analyzes retry behavior and stability across executed tests:
 
-- **Flakiness Rate Metric**: Prominent percentage indicator highlighting recovered test cases relative to total executed tests:
-  > **Flakiness Rate (%)** = `(Flaky / Recovered Tests / Total Executed Tests) × 100` (e.g., `5%` - `2/44 EXECUTED TESTS RECOVERED`).
-- **Anomalies Pill Badge**: Header badge summarizing failing and flaky tests (e.g., `✕ 10 Failed, 2 Flaky`).
-- **Category Breakdown List**:
-  - 🟢 **Direct Passes**: Count of tests passing on the initial attempt (e.g., `32`).
-  - 🟡 **Flaky / Recovered**: Count of tests that failed initially but passed upon retry (e.g., `2`).
-  - 🔴 **Unresolved Failures**: Count of tests remaining failed after all retry attempts (e.g., `10`).
-  - ⚪ **Skipped (Unexecuted)**: Count of bypassed or unexecuted test cases (e.g., `4`).
+- **Flakiness Rate Metric**: Prominent percentage indicator highlighting recovered test cases relative to total executed tests (e.g., `3% FLAKINESS RATE (2/66 EXECUTED TESTS RECOVERED)`).
+- **Issue Summary Badge**: Header pill summarizing failures and flaky tests (e.g., `✕ 8 Failed, 2 Flaky`).
+- **Stability Breakdown**:
+  - 🟢 **Direct Passes**: Tests passing on initial execution without retries.
+  - 🟡 **Flaky / Recovered**: Tests that failed initially but succeeded after retry.
+  - 🔴 **Unresolved Failures**: Tests that failed even after retry attempts.
+  - ⚪ **Skipped (Unexecuted)**: Bypassed or unexecuted test cases.
 
 ---
 
 ## 💡 How to Use the Dashboard
 
-1. **Daily CI Monitoring**: Check the **Pass Rate Ring** and **Quick Stats** to immediately determine build status.
-2. **Performance Benchmarking**: Check **Execution Efficiency Card** after adjusting Playwright `workers` count in `playwright.config.ts` to optimize parallel execution speeds.
-3. **Audit Trails**: Capture screenshot of the Overview tab or generate `summary.html` for release readiness documentation.
+1. **Daily CI Monitoring**: Check the **Overall Pass Rate** and **Test Results & Breakdown** cards for immediate build health.
+2. **Parallelism & Performance Tuning**: Review **Execution Efficiency & Timing** to measure the impact of adjusting worker threads in your configuration.
+3. **Flakiness Triage**: Check **Test Stability & Flakiness** to spot unreliable tests that recover on retry before they become permanent failures.

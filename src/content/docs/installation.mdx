@@ -14,9 +14,9 @@ import { Aside } from "@astrojs/starlight/components";
 
 ## 📥 Prerequisites
 
-- **Node.js**: Version `18.0.0` or higher
+- **Node.js**: Version `18.0.0` or higher 
 - **Playwright**: `@playwright/test` version `>=1.63.0` (may work with slightly older Playwright versions, but upgrading your Playwright version is recommended)
-- **Optional peer dependency**: `@duckdb/node-api` (version `1.5.5-r.5`) for local CLI historical intelligence commands.
+- **Optional peer dependency**: `@duckdb/node-api` (version `>=1.5.5`) for historical intelligence.
 
 <Aside type="caution">
   Compatibility: Zen Reporter is designed for standard Playwright test suites and does not support BDD-styled tests (e.g. Cucumber / playwright-bdd).
@@ -30,17 +30,17 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 Install `zen-reporter` using your preferred Node package manager:
 
-<Tabs>
-  <TabItem label="npm" icon="open-book">
+<Tabs syncKey="pkg">
+  <TabItem label="npm" icon="npm">
     ```npm install --save-dev @arpanp/zen-reporter ```
   </TabItem>
-  <TabItem label="pnpm" icon="rocket">
+  <TabItem label="pnpm" icon="pnpm">
     ```pnpm add -D @arpanp/zen-reporter ```
   </TabItem>
-  <TabItem label="yarn" icon="laptop">
+  <TabItem label="yarn" icon="seti:yarn">
     ```yarn add -D @arpanp/zen-reporter ```
   </TabItem>
-  <TabItem label="bun" icon="setting">
+  <TabItem label="bun" icon="bun">
     ```bun add -d @arpanp/zen-reporter ```
   </TabItem>
 </Tabs>
@@ -49,13 +49,19 @@ Install `zen-reporter` using your preferred Node package manager:
 
 If you plan to use historical trend analysis, test regression tracking, or DuckDB CLI queries (`npx zr history`), install `@duckdb/node-api`:
 
-<Tabs>
-  <TabItem label="npm">
+<Tabs syncKey="pkg">
+  <TabItem label="npm" icon="npm">
     ```npm install --save-dev @duckdb/node-api ```
   </TabItem>
-  <TabItem label="pnpm">```pnpm add -D @duckdb/node-api ```</TabItem>
-  <TabItem label="yarn">```yarn add -D @duckdb/node-api ```</TabItem>
-  <TabItem label="bun">```bun add -d @duckdb/node-api ```</TabItem>
+  <TabItem label="pnpm" icon="pnpm">
+    ```pnpm add -D @duckdb/node-api ```
+  </TabItem>
+  <TabItem label="yarn" icon="seti:yarn">
+    ```yarn add -D @duckdb/node-api ```
+  </TabItem>
+  <TabItem label="bun" icon="bun">
+    ```bun add -d @duckdb/node-api ```
+  </TabItem>
 </Tabs>
 
 ---
@@ -89,11 +95,7 @@ export default defineConfig({
         outputDir: "zen-report",
         projectName: "E2E Web Suite",
         testRunName: "Build #{N}",
-        theme: "Cafe",
-        darkMode: false,
         singleSummaryFile: true,
-        enableHistory: "auto",
-        consoleProgress: "auto",
       },
     ],
   ],
@@ -106,11 +108,19 @@ export default defineConfig({
 
 Run your Playwright tests using your preferred package manager:
 
-<Tabs>
-  <TabItem label="npm">```npx playwright test ```</TabItem>
-  <TabItem label="pnpm">```pnpm exec playwright test ```</TabItem>
-  <TabItem label="yarn">```yarn playwright test ```</TabItem>
-  <TabItem label="bun">```bunx playwright test ```</TabItem>
+<Tabs syncKey="pkg">
+  <TabItem label="npm" icon="npm">
+    ```npx playwright test ```
+  </TabItem>
+  <TabItem label="pnpm" icon="pnpm">
+    ```pnpm exec playwright test ```
+  </TabItem>
+  <TabItem label="yarn" icon="seti:yarn">
+    ```yarn playwright test ```
+  </TabItem>
+  <TabItem label="bun" icon="bun">
+    ```bunx playwright test ```
+  </TabItem>
 </Tabs>
 
 During execution, `zen-reporter` output depends on your terminal interactive state:

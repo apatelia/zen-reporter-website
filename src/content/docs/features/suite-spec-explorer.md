@@ -9,28 +9,26 @@ Viewing test results of a large test suites with hundreds of `describe` blocks a
 
 ## 🌳 Interactive Suite Tree (`Suites` Tab)
 
-The **Suites** tab presents raw nested Playwright `test.describe()` groups into a collapsible hierarchy tree view.
+The **Suites** tab presents your test suites and spec files in an interactive, collapsible hierarchy tree view.
 
-```text
-📁 e2e/auth/login.spec.ts
-  ├── 📁 describe("Authentication Workflow")
-  │     ├── 🟢 test("User can login with valid credentials") [Passed - 1.2s]
-  │     └── 🔴 test("Invalid password displays error message") [Failed - 3.4s] [Retry #1]
-  └── 📁 describe("OAuth Providers")
-        └── 🟢 test("Google SSO redirect") [Passed - 850ms]
-```
+![Suites Tab](../../../assets/screenshots/suites.png)
 
 ### Key Features of Suite View
 
-- **Nested Describe Collapsibility**: Infinite nesting support for `test.describe()` groups with interactive collapse/expand toggle controls.
-- **Bulk Expand / Collapse Controls**: Header buttons to expand all nodes or collapse all nodes in a single click.
-- **Full-Text Live Search Filter**: Filter the entire suite tree by execution status, project name, tag (e.g., `@smoke`, `@regression`), or spec file name.
-- **Retry Attempt Badges**: Clearly labels test cases that required retries to pass, displaying retry counts and attempt history.
-- **Status & Duration Indicators**: Color-coded icons (🟢 Passed, 🔴 Failed, 🟡 Timed Out, 🔴 Interrupted, ⚪ Skipped) with precise execution duration tags for each test case.
-- **Inline Test Case Cards**: Click on any test node to open detailed execution metrics, console logs, and step execution details.
-- **Attachment Previews & Quick Downloads**: Interactive attachment modal supporting in-app previews for text logs, failure screenshots, and execution video recordings, along with one-click quick downloads for Playwright `.zip` trace files.
-
-![Suites Tab](../../../assets/screenshots/suites.png)
+- **Top Suite KPI Cards**: Summary cards at the top showing high-level test run metrics:
+  - **Suites**: Total count of evaluated suites (e.g., `12`).
+  - **Total Tests**: Total count of test cases evaluated across suites (e.g., `70`).
+- **Search & Multi-Dimensional Filtering Toolbar**:
+  - **Live Search**: Instant search input filtering suites by test title, file name, or spec path.
+  - **Status Filter**: Dropdown with badge count (e.g., `Status (5)`) to filter by execution outcome (Passed, Failed, Timed Out, Interrupted, Skipped).
+  - **Project Filter**: Dropdown with badge count (e.g., `Project (2)`) to filter across Playwright project configurations.
+  - **Tags Filter**: Tag selector button to filter by custom `@tag` annotations.
+- **Bulk Expand / Collapse Controls**: Quick-action buttons (`Expand All` / `Collapse All`) alongside the suite count indicator (e.g., `Showing 12 top-level suites`).
+- **Collapsible Suite & File Cards**:
+  - Shows file path (e.g., `/tests/failures.spec.ts`), test count, execution duration (e.g., `57ms`), and pass rate percentage (e.g., `0% pass rate`).
+  - Color-coded outcome pills on each card summarizing results: `passed`, `failed`, `timed out`, `interrupted`, and `skipped`.
+- **Nested Describe & Test Hierarchy**: Infinite nesting support for `test.describe()` groups and individual test case steps with collapsible tree toggles.
+- **Inline Test Case Details & Attachments**: Click on any test node to view step execution logs, retry attempt history, failure code frames, video recordings, screenshots, and Playwright `.zip` traces.
 
 ---
 
@@ -73,21 +71,30 @@ Two side-by-side analytical cards providing execution distribution metrics:
 
 ---
 
-### 3. File Breakdown Summary Table
+### 3. Test Results by File Table
 
-A comprehensive paginated breakdown table (`File Breakdown Summary`):
+A comprehensive paginated breakdown table (`Test Results by File`) providing file-by-file outcome analytics:
 
-![Files Breakdown Summary Table](../../../assets/screenshots/files-breakdown-summary.png)
+![Test Results by File Table](../../../assets/screenshots/test-results-by-file.png)
 
-- **Pill Badges**: Color-coded pill counters for Passed (green), Failed (red), Timed Out (yellow), Interrupted (red), and Skipped (blue) case counts.
-- **Export to CSV**: Includes an explicit **Export CSV** button to export the full file breakdown dataset into CSV format.
+- **Search & Pagination Controls**: Filter spec files on the fly via the search box (`Search spec files by file name or path...`), adjust page size (`Rows per page: 25`), and paginate through pages (`Previous` / `Next`).
+- **Export to CSV**: One-click **Export CSV** button in the table header to download the full file-level results dataset.
+- **Detailed Metrics Columns**:
+  - **File**: Path of the test spec file.
+  - **Total**: Total number of test cases in the file.
+  - **Passed**: Count of passed tests, highlighted with green pills.
+  - **Failed**: Count of failed tests, highlighted with red pills when errors occur.
+  - **Timed Out**: Count of timed-out tests, highlighted with yellow/amber pills.
+  - **Interrupted**: Count of aborted/interrupted tests, highlighted with red pills.
+  - **Skipped**: Count of skipped tests, highlighted with soft blue pills.
+  - **Pass Rate**: Proportional pass percentage badge for the spec file (e.g., `100%`, `0%`).
 
 ---
 
 ## 💡 Best Practices
 
-1. **Tag Filtering**: Use Playwright test tags (`@smoke`, `@critical`, `@flaky`) in your test titles. Type `@smoke` into the search filter to instantly filter the tree view down to your target test suite.
-2. **Isolating Failure Hotspots**: Review the **Failure Concentration** card and examine the **File Breakdown Summary** table to identify spec files with low Pass Rates that contribute most to build instability.
+1. **Tag & Project Filtering**: Use the multi-dimensional filter bar on the **Suites** tab (`Status`, `Project`, `Tags`) to narrow down large test suites to specific browser environments or test categories (like `@smoke`).
+2. **Isolating Failure Hotspots**: Review the **Failure Concentration** card and examine the **Test Results by File** table to identify spec files with low Pass Rates that contribute most to build instability.
 3. **Analyzing Duration Bottlenecks**: Inspect the **Longest Execution Spec Files** card to identify top long-running spec files and optimize parallel worker allocation or split test cases.
 4. **Inspecting Media & Trace Attachments**: Open test case cards directly from the **Suites** tree to preview failure screenshots, watch video recordings, and download Playwright `.zip` trace files for deep offline debugging.
-5. **Exporting Metrics for BI & Reporting**: Click **Export CSV** in the **Files** tab to generate CSV reports for offline archiving or integration with QA management dashboards.
+5. **Exporting Metrics for BI & Reporting**: Click **Export CSV** on the **Test Results by File** table to export file metrics for QA management reports and compliance audits.

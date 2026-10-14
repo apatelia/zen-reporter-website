@@ -1,0 +1,3 @@
+Note
+
+Zen Reporter is designed and built with AI pair-programming tools; fully tested, maintained, and quality-assured by human hands.

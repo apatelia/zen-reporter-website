@@ -7,21 +7,6 @@ Zen Reporter features an embedded analytics engine powered by [DuckDB](https://d
 
 ---
 
-## ⚡ DuckDB Analytics Engine Overview
-
-```mermaid
-flowchart LR
-    A["Historical JSONL Logs (<outputDir>/runs/*.jsonl)"] --> B["DuckDB Node API"]
-    B --> C1["Flaky Intelligence Engine"]
-    B --> C2["Regression Tracker"]
-    B --> C3["P95 / Latency Calculator"]
-    B --> C4["Custom SQL Query Engine"]
-    C1 & C2 & C3 --> D["UI Insights Tab & CLI Reports"]
-    C4 --> E["Terminal SQL Output"]
-```
-
----
-
 ## 📊 Analytical Intelligence Modules
 
 ### 1. Flaky Test Intelligence (`npx zr history flaky`)

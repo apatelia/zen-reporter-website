@@ -1,6 +1,5 @@
 // @ts-check
 import starlight from '@astrojs/starlight';
-import mermaid from 'astro-mermaid';
 import { defineConfig } from 'astro/config';
 import starlightImageZoom from 'starlight-image-zoom';
 
@@ -9,7 +8,6 @@ export default defineConfig({
   site: 'https://zen-reporter.vercel.app',
   base: '/',
   integrations: [
-    mermaid(),
     starlight({
       plugins: [starlightImageZoom()],
       title: 'Zen Reporter',
@@ -17,8 +15,17 @@ export default defineConfig({
       logo: {
         src: './src/assets/logo.svg',
       },
+      components: {
+        SiteTitle: './src/components/SiteTitle.astro',
+      },
       customCss: ['./src/styles/custom.css'],
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/apatelia/zen-reporter' }],
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/apatelia/zen-reporter'
+        }
+      ],
       sidebar: [
         {
           label: 'Start Here',
@@ -35,14 +42,15 @@ export default defineConfig({
             { label: 'Per-Project Analytics', slug: 'features/per-project-analytics' },
             { label: 'Suite & Spec Explorer', slug: 'features/suite-spec-explorer' },
             { label: 'Failure Analysis', slug: 'features/failure-analysis' },
+            { label: 'Attachment Preview', slug: 'features/universal-preview-modal' },
             { label: 'Visual Regression Viewer', slug: 'features/visual-regression' },
             { label: 'History & Archiving', slug: 'features/history-archiving' },
+            { label: 'Context Guide', slug: 'features/guide-modals' },
             { label: 'Test Intelligence', slug: 'features/duckdb-intelligence' },
             { label: 'Themes & Dark Mode', slug: 'features/themes-and-dark-mode' },
             { label: 'CSV Exporter', slug: 'features/csv-exporter' },
             { label: 'Executive Summary Report', slug: 'features/executive-summary' },
             { label: 'Zen Reporter CLI', slug: 'features/zr-cli' },
-            { label: 'Context Guide', slug: 'features/guide-modals' }
           ],
         },
       ],
