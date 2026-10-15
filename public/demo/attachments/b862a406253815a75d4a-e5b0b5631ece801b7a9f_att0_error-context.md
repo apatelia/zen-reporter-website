@@ -12,12 +12,12 @@
 # Error details
 
 ```
-Error: random pick was 3, expected 1
+Error: random pick was 2, expected 1
 
 expect(received).toBe(expected) // Object.is equality
 
 Expected: 1
-Received: 3
+Received: 2
 ```
 
 # Test source
@@ -64,7 +64,7 @@ Received: 3
   39 |   const pick = valuesToPickFrom.at(pickIndex);
   40 | 
 > 41 |   expect(pick, `random pick was ${pick}, expected 1`).toBe(1);
-     |                                                       ^ Error: random pick was 3, expected 1
+     |                                                       ^ Error: random pick was 2, expected 1
   42 | });
   43 | 
 ```

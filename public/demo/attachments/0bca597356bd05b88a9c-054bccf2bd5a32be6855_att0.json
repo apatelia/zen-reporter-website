@@ -1,0 +1,17 @@
+{
+  "reporter": "zen-reporter",
+  "version": "0.14.2",
+  "features": {
+    "syntaxHighlighting": true,
+    "supportedLanguages": [
+      "json",
+      "markdown",
+      "javascript",
+      "typescript"
+    ]
+  },
+  "metrics": {
+    "totalTests": 12,
+    "passRate": 100
+  }
+}

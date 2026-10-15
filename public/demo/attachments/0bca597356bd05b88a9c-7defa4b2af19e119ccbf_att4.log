@@ -1,0 +1,3 @@
+[INFO] 2026-10-16 00:28:00 Initializing application context
+[INFO] 2026-10-16 00:28:01 Service endpoints registered successfully
+[DEBUG] 2026-10-16 00:28:02 Health check probe status: OK (200)

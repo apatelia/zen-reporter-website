@@ -13,7 +13,7 @@
     "orientationAngle": 0,
     "orientationType": "landscape-primary"
   },
-  "timestamp": "2026-10-14T18:52:33.962Z",
+  "timestamp": "2026-10-15T21:25:23.476Z",
   "url": "https://projects.accesscomputing.uw.edu/au/after.html",
   "toolOptions": {
     "runOnly": {
@@ -1209,7 +1209,7 @@
           "all": [],
           "none": [],
           "impact": null,
-          "html": "<label id=\"captcha_label\" for=\"captcha_answer\">If a cow is purple, what color is it?</label>",
+          "html": "<label id=\"captcha_label\" for=\"captcha_answer\">Sunday, cow, Friday. Which of these is not a day?</label>",
           "target": [
             "#captcha_label"
           ]

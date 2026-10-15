@@ -1,0 +1,17 @@
+Note
+
+Zen Reporter is designed and built with AI pair-programming tools; fully tested, maintained, and quality-assured by human hands.
+
+On this page
+Overview
+📥 Prerequisites
+🛠️ Step 1: Installation
+(Optional) Install DuckDB Peer Dependency for History Intelligence
+⚙️ Step 2: Configure Playwright
+Basic Setup (Default Options)
+Recommended Production Setup
+🚀 Step 3: Run Your Tests
+🌐 Step 4: Open & View the Report
+Method 1: Using the Built-in zr CLI Tool
+Method 2: Opening Directly in Browser
+🔄 Next Steps
