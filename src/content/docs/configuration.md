@@ -28,6 +28,7 @@ export default defineConfig({
         minimalReport: false,
         enableHistory: 'auto',
         consoleProgress: 'auto',
+        openAutomatically: 'never',
       },
     ],
   ],
@@ -36,17 +37,18 @@ export default defineConfig({
 
 ### Complete Configuration Options Table
 
-| Option              | Type                                   | Default                     | Description                                                                                                                                 |
-| :------------------ | :------------------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| `outputDir`         | `string`                               | `"zen-report"`              | Directory where final report files are saved.                                                                                               |
-| `projectName`       | `string`                               | `"Test Automation Project"` | Project name displayed prominently in the top bar of the dashboard.                                                                         |
-| `testRunName`       | `string`                               | `"Test Run #{N}"`           | Test run or build name displayed in top bar. `{N}` is replaced dynamically by run number.                                                   |
-| `theme`             | `string`                               | `"Cafe"`                    | Theme applied on first load (`"Cafe"`, `"Concept"`, `"Sentinel"`).                                                                          |
-| `darkMode`          | `boolean \| 'system'`                  | `"system"`                  | Initial dark mode state (`true`, `false`, or `"system"` to automatically match OS theme setting).                                           |
-| `singleSummaryFile` | `boolean`                              | `false`                     | Generates a standalone `summary.html` for executive summary views.                                                                          |
-| `minimalReport`     | `boolean`                              | `false`                     | When `true`, disables history recording and hides analytical charts/secondary tabs (Projects, History, Trends, Insights) for a lean report. |
-| `enableHistory`     | `'auto' \| boolean`                    | `"auto"`                    | Controls history execution archiving (`"auto"`, `true`, `false`). Forced to `false` when `minimalReport` is `true`.                         |
-| `consoleProgress`   | `'auto' \| 'line' \| 'dot' \| boolean` | `"auto"`                    | Controls terminal execution output (`"auto"` selects `line` in TTY and `dot` in non-TTY).                                                   |
+| Option              | Type                                       | Default                     | Description                                                                                                                                 |
+| :------------------ | :----------------------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| `outputDir`         | `string`                                   | `"zen-report"`              | Directory where final report files are saved.                                                                                               |
+| `projectName`       | `string`                                   | `"Test Automation Project"` | Project name displayed prominently in the top bar of the dashboard.                                                                         |
+| `testRunName`       | `string`                                   | `"Test Run #{N}"`           | Test run or build name displayed in top bar. `{N}` is replaced dynamically by run number.                                                   |
+| `theme`             | `string`                                   | `"Cafe"`                    | Theme applied on first load (`"Cafe"`, `"Concept"`, `"Sentinel"`).                                                                          |
+| `darkMode`          | `boolean \| 'system'`                      | `"system"`                  | Initial dark mode state (`true`, `false`, or `"system"` to automatically match OS theme setting).                                           |
+| `singleSummaryFile` | `boolean`                                  | `false`                     | Generates a standalone `summary.html` for executive summary views.                                                                          |
+| `minimalReport`     | `boolean`                                  | `false`                     | When `true`, disables history recording and hides analytical charts/secondary tabs (Projects, History, Trends, Insights) for a lean report. |
+| `enableHistory`     | `'auto' \| boolean`                        | `"auto"`                    | Controls history execution archiving (`"auto"`, `true`, `false`). Forced to `false` when `minimalReport` is `true`.                         |
+| `consoleProgress`   | `'auto' \| 'line' \| 'dot' \| boolean`     | `"auto"`                    | Controls terminal execution output (`"auto"` selects `line` in TTY and `dot` in non-TTY).                                                   |
+| `openAutomatically` | `'always' \| 'never' \| 'on-failure-only'` | `"never"`                   | Controls whether to launch the report viewer automatically after run completion (`"always"`, `"never"`, or `"on-failure-only"`).            |
 
 ---
 
@@ -116,5 +118,13 @@ export default defineConfig({
   - `'line'`: Live updating single-line status bar showing progress percentage, pass/fail counts, worker thread count, and current test title.
   - `'dot'`: Continuous character stream (`.` pass, `F` fail, `s` skip, `±` flaky retry).
   - `false`: Disables custom terminal progress output.
+
+### 10. `openAutomatically` (`'always' | 'never' | 'on-failure-only'`)
+
+- **Default**: `"never"`
+- **Details**: Controls whether to launch the report viewer automatically after run completion:
+  - `'always'`: Automatically opens the report in your default browser after every test run.
+  - `'never'`: Never opens the report automatically.
+  - `'on-failure-only'`: Automatically opens the report only if one or more tests fail.
 
 ---
